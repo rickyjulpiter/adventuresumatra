@@ -1,3 +1,14 @@
+<?php include 'koneksi.php';
+
+// $namaTour = $_GET['tourName'];
+
+if (isset($_GET['tourName'])) {
+    $namaTour = $_GET['tourName'];
+} else if (isset($_GET['tourID'])) {
+    $idTour = $_GET['tourID'];
+}
+//echo($namaTour);
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,7 +28,19 @@
 </head>
 
 <body>
+<?php
+    $queryTour = mysqli_query($koneksi, "SELECT * FROM paket_wisata WHERE id = '$idTour '") or die(mysqli_error());
+    $detail = mysqli_fetch_assoc($queryTour);
+    $idTourPackages = $detail['id'];
+    $nama_tour = $detail['nama'];
+    $deskripsi_tour = $detail['deskripsi'];
+    $peta_tour = $detail['peta'];
+    $timeline_tour = $detail['timeline'];
 
+    $queryBreadCumb = mysqli_query($koneksi, "SELECT gambar FROM paket_wisata_gambar WHERE paket_wisata_id = '$idTour' LIMIT 1") or die(mysqli_error());
+    $tampilGambar = mysqli_fetch_assoc($queryBreadCumb);
+    $gambarBreadCumb = $tampilGambar['gambar'];
+    ?>
 <div class="super_container">
 	
 	<!-- Header -->
@@ -63,8 +86,8 @@
 							<ul class="main_nav_list">
 								<li class="main_nav_item"><a href="index.php">home</a></li>
 								<li class="main_nav_item"><a href="about.html">about us</a></li>
-								<li class="main_nav_item"><a href="destination.html">destination</a></li>
-								<li class="main_nav_item"><a href="single_listing.html">tour packages</a></li>
+								<li class="main_nav_item"><a href="destination-area-detaill?destination=Medan">destination</a></li>
+								<li class="main_nav_item"><a href="tourr?tourID=2">tour packages</a></li>
 								<li class="main_nav_item"><a href="blog.html">news</a></li>
 								<li class="main_nav_item"><a href="contact.html">contact</a></li>
 							</ul>
@@ -94,9 +117,9 @@
 	<!-- Home -->
 
 	<div class="home">
-		<div class="home_background parallax-window" data-parallax="scroll" data-image-src="images/tour43-0-Kecak-Uluwatu-Bali.jpg"></div>
+		<div class="home_background parallax-window" data-parallax="scroll" data-image-src="<?= $gambarBreadCumb; ?>"></div>
 		<div class="home_content">
-			<div class="home_title">12 days the essential of bali</div>
+			<div class="home_title1"><?php echo ($nama_tour); ?></div>
 		</div>
 	</div>
 
@@ -141,7 +164,7 @@
 							Listing Image -->
 
 							<div class="hotel_image">
-								<img src="images/tour43-0-Kecak-Uluwatu-Bali.jpg" alt="">
+								<img src="<?= $gambarBreadCumb; ?>" alt="">
 								<!--<div class="hotel_review_container d-flex flex-column align-items-center justify-content-center">
 									<div class="hotel_review">
 										<div class="hotel_review_content">
@@ -160,32 +183,22 @@
 									<div class="owl-carousel owl-theme hotel_slider">
 
 										<!-- Hotel Gallery Slider Item -->
-										<div class="owl-item">
-											<a class="colorbox cboxElement" href="images/tour43-1-Monkey-Forest-Ubud-.jpg">
-												<img src="images/tour43-1-Monkey-Forest-Ubud-.jpg" alt="https://unsplash.com/@jbriscoe">
-											</a>
-										</div>
+										<?php
+	                                    $i = 0;
+	                                    $query_mysql = mysqli_query($koneksi, "SELECT gambar FROM paket_wisata_gambar WHERE paket_wisata_id = '$idTourPackages' ") or die(mysqli_error());
+	                                    while ($data = mysqli_fetch_array($query_mysql)) {
+	                                        $gambar = $data['gambar'];
+	                                        ?>
+	                                        <div class="owl-item">
+												<a class="colorbox cboxElement" href="<?= $gambar ?>">
+													<img src="<?= $gambar ?>" alt="in_th_030_01">
+												</a>
+											</div>
+	                                        <!-- End of Slide -->
+	                                    <?php $i++;
+	                                    } ?>
+										
 
-										<!-- Hotel Gallery Slider Item -->
-										<div class="owl-item">
-											<a class="colorbox cboxElement" href="images/tour43-2-Mont-Batur-Bali-.jpg">
-												<img src="images/tour43-2-Mont-Batur-Bali-.jpg" alt="https://unsplash.com/@grovemade">
-											</a>
-										</div>
-
-										<!-- Hotel Gallery Slider Item -->
-										<div class="owl-item">
-											<a class="colorbox cboxElement" href="images/tour43-3-Ricefield-Terace-Bali.jpg">
-												<img src="images/tour43-3-Ricefield-Terace-Bali.jpg" alt="https://unsplash.com/@fransaraco">
-											</a>
-										</div>
-
-										<!-- Hotel Gallery Slider Item -->
-										<div class="owl-item">
-											<a class="colorbox cboxElement" href="images/tour43-4-Tenganan-Village-Bali.jpg">
-												<img src="images/tour43-4-Tenganan-Village-Bali.jpg" alt="https://unsplash.com/@workweek">
-											</a>
-										</div>
 
 										<!-- Hotel Gallery Slider Item 
 										<div class="owl-item">
@@ -287,7 +300,7 @@
 							<div class="tab-content">
 								<div class="tab-pane active" id="home" role="tabpanel" aria-labelledby="home-tab">
 									<div class="hotel_info_text">
-									<p>Enjoy a relax pace while discovering the essentials of Bali! During this trip you will visit the must see of Bali such as the UNESCO well-known Jatiluwih rice terraces, the magnificent sunrise from Mount Batur’s view, explore an unspoiled green village in the heart of the island. Keep in mind that if you have your own bucket list and that there is special places you wish to visit, our team can always adapt and customize your trip.</p><
+									<p><?php echo $deskripsi_tour; ?></p>
 									</div>
 								</div>
 								<!--
@@ -356,7 +369,7 @@
 										<div class="travelix_map">
 											<div id="google_map" class="google_map">
 												<div class="map_container" align="center">
-													<iframe src="https://www.google.com/maps/embed?pb=!1m64!1m12!1m3!1d505205.5458021163!2d115.0101294760185!3d-8.409682413175135!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m49!3e0!4m5!1s0x2dd2441650216933%3A0xdf71da6ddd7bcc1f!2sNgurah%20Rai%20International%20Airport%20(DPS)%2C%20Jalan%20Raya%20Gusti%20Ngurah%20Rai%2C%20Tuban%2C%20Badung%20Regency%2C%20Bali!3m2!1d-8.746717199999999!2d115.166787!4m5!1s0x2dd23d6a8d1ac1cd%3A0x89468df6e4c9d611!2sUbud%20Centre%2C%20Jalan%20Suweta%2C%20Ubud%2C%20Gianyar%2C%20Bali!3m2!1d-8.5064817!2d115.2624187!4m5!1s0x2dd1f45d6c8fe87d%3A0x448d1ad48814ee43!2sBatur%20Mountain%20View%2C%20South%20Batur%2C%20Bangli%20Regency%2C%20Bali!3m2!1d-8.2594514!2d115.3411172!4m5!1s0x2dd21e398e4623fd%3A0x3030bfbca7cbef0!2sBangli%2C%20Bali!3m2!1d-8.2975884!2d115.3548713!4m5!1s0x2dd2092cb3cd7f25%3A0x871e3813fed35ad5!2sCandidasa%20Beach%2C%20Bali!3m2!1d-8.5099736!2d115.5685065!4m5!1s0x2dd19b40a35dbf07%3A0x7500ee0f7e30527c!2sLovina%20Beach%2C%20Bali!3m2!1d-8.161140999999999!2d115.02435659999999!4m5!1s0x2dd186110077a85f%3A0x5030bfbca830680!2sMunduk%2C%20Buleleng%20Regency%2C%20Bali!3m2!1d-8.2666267!2d115.054678!4m5!1s0x2dd2471c804bfd05%3A0xdcc2b5ae63dc9082!2sSeminyak%20Beach%2C%20Bali!3m2!1d-8.691193!2d115.157141!5e0!3m2!1sen!2sid!4v1577716885569!5m2!1sen!2sid" width="900" height="450" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
+													<?php echo $peta_tour ?>
 												</div>
 											</div>
 										</div>
@@ -366,78 +379,7 @@
 								<div class="tab-pane" id="settings" role="tabpanel" aria-labelledby="settings-tab">
 									<div class="hotel_info_text">
 										
-											<b>Day 1: Welcome to Bali</b>
-											Upon your arrival at the airport, you will be greeted by your driver who will accompany you to your hotel in the charming city of Ubud located in the heart of rice fields.
-											You can then spend the first afternoon of your trip to Bali, as you like. You benefit of a free time during which you will be able to stroll in the city and its green surroundings.  Overnight in a 3* hotel in Ubud
-											<br><br>
-											<b>Day 2: Discover The Beautiful Surrounding of Ubud</b>
-											Enjoy a fresh breakfast at your hotel, then around 09.00 am, you will be pick up by our guide to start a full day tour around Ubud.
-											Start your visits by visiting Taman Ayun temple, a royal family temple of the former Mengwi Kingdom, then continue by visiting Jatiluwih rice terrace a world heritage area by UNESCO. Then, your lunch will be serve at a local restaurant, after lunch continue to Batukaru temple, a beautiful temple located among the tropical rain forest. After that, head back towards Ubud town to discover the famous monkey forest.
-											Back to your hotel.
-											Overnight in a 3* hotel in ubud
-											<br><br>
-											<b>Day 3: Mount Batur Climbing</b>
-											Wake up early morning at 02.00 am. Take your breakfast box at the hotel, then at 02.30 am our guide will pick you up and then depart to Batur Mountain.
-											You will arrive at Mount Batur around 03.30 am and start the climbing  at 03.45. After 2 hours of walk, around 05.45, you will arrive at the peak, and see the sunrise (if the sky is clear). There you can enjoy your breakfast with the magnificent view.
-											At about 06.30 am start going down and back to the starting point. Continue the trip to hot water spring at Toya Bungkah located beside of the Batur Lake. Here you can swim and take a hot bath.
-											Around 10.00 am back to your hotel and free program for the rest of the day.
-											Overnight in a 3* hotel in Ubud
-											<br><br>
-											<b>Day 4: Bangli, The Hidden Gem of Bali</b>
-											Breakfast at your hotel , then proceed to check out and transfer to your next destination, Bangli.
-											Before arriving to Bangli, you will do a stop over to visit Gunung Kawi Temple in Tampaksiring, an archaeological object. Then visit Sebatu Water Spring Temple (if you’d like you can take a natural Balinese bath).
-											After, you will visit the beautiful Ceking Rice Terrace and then, continue your visit to a traditional market to see the daily life of the locals and the Balinese culture. Take your lunch at a local restaurant.
-											Then, check in an Eco Tradi Home, a local Balinese house compound, where you will be welcome by the family and be able to practice Balinese cooking class for around 2,5 hours to prepare your own dinner.
-											Enjoy your own cooked dinner and take a while to seat back and relax in the peaceful environment.
-											Overnight in a 3* Eco Tradi home
-											<br><br>
-											<b>Day 5: Bangli – Rural Balinese Life & Farming</b>
-											Breakfast at the hotel. Today you will be picked up at your hotel by your driver to Undisan Village to join a rural Balinese life & farming activity.
-											Arrive at Undisan Village, Bangli, there you will be welcomed by a local Balinese who will escort you to visit the elementary school of the village, walk through the inner side of the village and arrive in the middle of rice fields. You will start to explore and discover the traditional Balinese farmer, there you can learn the manual way of plowing the rice with the traditional plow that is pull by a pair of cows/buffalo. The farmer plants the rice seeds using a balancing movement.
-											Enjoy a fresh young coconut water and lunch under a Balinese hut in the middle of the rice fields.
-											Continue with a soft trek around rice fields, visit the Dalem Temple (temple of Siva God) and waterfall. You will continue by visiting the manufacturer of handmade silver and gold smith producing jewelry for Balinese dancer, Balinese bride & groom.
-											To finish the day, you will  join a typical Balinese activity: making offerings and do a short traditional music course (Gamelan or Rindik).
-											Overnight in a 3* Eco Tradi home
-											<br><br>
-											<b>Day 6: Bangli – Candidasa</b>
-											Breakfast at the hotel, then take the road to Sidemen countryside where you will join a  2 hours trek in the middle of the rice fields of Sidemen.
-											Continue by the visit of Kerta Gosa, a royal justice court located in the capital city of Klungkung. This court is very well decorated with traditional painting on the ceilings. Take your lunch in a local restaurant and then continue to Kusamba Village, known as a fisherman village that produce traditional salt.
-											The last visit for the day will be Tenganan Traditional Village, an ancient village of Bali that still has their own rituals and ceremonies.
-											Overnight in a 3* hotel
-											<br><br>
-											<b>Day 07: Candidasa – Lovina</b>
-											Breakfast at the  hotel, then check out and transfer to Lovina Beach.
-											On the way to Lovina, you will visit the beautiful water palace: Tirta Gangga, a former public park for bathing, belonging to Karangasem Kingdom. Then, continue to Amed Beach.
-											Enjoy your lunch in a local warung, and continue the road trip to Lovina. You will be able to do a stop over at Meduwe Karang Temple, a large and well restored temple in a beautiful setting up against the mountain located 15 minutes before Lovina.
-											Arrive at the hotel free program and overnight.
-											Overnight in a 3* hotel
-											<br><br>
-											<b>Day 8: Lovina - Munduk</b>
-											Breakfast at your hotel and then at 07.30 depart to go snorkeling around Lovina Beach by traditional boat to see the underwater world for about 2 hours. Back to your hotel to take a hot shower and get ready to go to Munduk.
-											On the way visit Brahma Vihara (Buddhist temple at Banjar Village). Your lunch will be serve in a local restaurant.
-											After lunch proceed to check in and continue your day with a two hours trek around Munduk Village to see rice fields, coffee & clove plantations, waterfalls.
-											Back to the  hotel and dinner at the hotel.
-											Overnight in a 3* hotel
-											<br><br>
-											<b>Day 9: Munduk - Seminyak</b>
-											Breakfast at the hotel, then take the road to visit the south of Bali, Seminyak/Legian area.
-											On the way visit the famous Ulun Danu Temple, it is a major Shaivaite water temple in Bali. The temple complex is located on the shores of Lake Bratan in the mountains near Bedugul.
-											Continue with the visit of the Botanical Garden and the traditional market of Bedugul.
-											Then, finish the day by watching the colorful sunset set aside Tanah Lot Temple, located on a hard 50 meters height stone off the shore.
-											Arrive in Seminyak, check in at the hotel.
-											Overnight in a 4* hotel
-											<br><br>
-											<b>Day 10: Uluwatu</b>
-											Breakfast at the hotel, and then free program until lunch time.
-											At 14.00, you will be pick up by our guide to join a half day tour to Padang Padang Beach and then visit the Uluwatu Temple located on the cliff facing the Indian ocean.
-											Overnight in a 4* hotel
-											<br><br>
-											<b>Day 11: Free Day in Seminyak</b>
-											Breakfast at hotel and then free program at leisure.
-											Overnight in a 4* hotel
-											<br><br>
-											<b>Day 12: Last Day in Paradise</b>
-											Breakfast at the hotel then free program until 12.00, check out time. Transfer by our driver to Ngurah Rai Airport (base on your flight schedule).</div>
+											<?php echo $timeline_tour; ?></div>
 										
 									</div>
 								</div>

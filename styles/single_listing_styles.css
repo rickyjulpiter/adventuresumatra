@@ -489,7 +489,7 @@ section
 
 .main_nav_container
 {
-	margin-right: 221px;
+	margin-right: 180px; /* previous 221 */
 }
 .main_nav_item
 {
@@ -790,6 +790,15 @@ section
 .home_title
 {
 	font-size: 72px;
+	font-weight: 800;
+	color: #FFFFFF;
+	text-transform: uppercase;
+	white-space: nowrap;
+}
+
+.home_title1
+{
+	font-size: 45px;
 	font-weight: 800;
 	color: #FFFFFF;
 	text-transform: uppercase;
@@ -1460,10 +1469,11 @@ section
 .hotel_info_text
 {
 	margin-top: 45px;
+	color: black;
 }
 .hotel_info_text p
 {
-	color: #929191;
+	color: black;
 }
 
 /*********************************
@@ -1934,4 +1944,244 @@ section
 .footer_nav_item a:hover
 {
 	color: #FFFFFF;
+}
+
+/*
+sidebar*/
+#sidebar-sticky{
+  margin-bottom: 70px;
+}
+.detail-tabs #sidebar-sticky{
+  margin-bottom: 0;
+}
+.sidebar-item{
+  border: 1px solid #f1f1f1;
+  box-shadow: 0px 0px 20px #cccccc57;
+  margin-bottom: 30px;
+  padding: 15px;
+}
+.sidebar-item-dark{
+  background: #333;
+}
+.sidebar-item-dark .detail-title h4{
+  color: #fff;
+  background: #333;
+}
+.sidebar-content li:last-child{
+  margin-bottom: 0;
+}
+.sidebar-item .detail-title{
+  margin-bottom: 15px;
+}
+.tour-details ul li span{
+  color: #e67e22;
+  font-weight: 600;
+}
+.sidebar-socialicon{
+  padding-bottom: 5px;
+}
+.share-links li{
+  display: inline-block;
+  margin-bottom: 0;
+  float: left;
+  width: 50%;
+  margin: 0 0 10px 0;
+}
+.share-links li span{
+  font-size: 15px;
+}
+.share-links li.social-icon a i{
+  font-size: 15px;
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  border: 1px solid #ccc;
+  line-height: 2;
+  margin-right: 5px;
+  text-align: center;
+  color: #fff;
+  background: #38A1F3;
+}
+.share-links li.social-icon a i.fa-facebook{
+  background: #3C5A99;
+}
+.share-links li.social-icon a i.fa-instagram{
+  background: #F77737;
+}
+.share-links li.social-icon a i.fa-youtube{
+  background: #FF0000;
+}
+.support-content h4{
+  margin-bottom: 0px;
+}
+.support-content p{
+  margin: 0;
+  color: #e67e22;
+}
+.sidebar-package-content{
+  background: inherit;
+  padding: 15px 0 0 0;
+  text-align: left;
+}
+.sidebar-package-content h4{
+  margin-bottom: 1px;
+  display: inline-block;
+}
+.sidebar-package-content p{
+  display: block;
+  margin-bottom: 7px;
+}
+.sidebar-package-content .deal-rating{
+  display: inline-block;float: right;
+}
+.sidebar-item input,
+.sidebar-item textarea,
+.sidebar-item input .form-control{
+  padding: 10px !important;
+  font-size: 13px;
+}
+.sidebar-item textarea{
+  height: 100px;
+}
+.sidebar-item .comment-btn .btn-blue{
+  display: block;
+  width: 100%;
+  text-align: center;
+  color: #fff;
+}
+.sidebar-helpline{
+  background: url(../images/danautoba.jpg) no-repeat;
+  background-size: cover;
+  position: relative;
+  padding: 30px;
+}
+.sidebar-helpline:after{
+  position: absolute;
+  content: '';
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  background: rgba(0,0,0,0.5);
+}
+.sidebar-helpline-content{
+  position: relative;
+  z-index: 1;
+}
+.sidebar-helpline-content h3,
+.sidebar-helpline-content p{
+  color: #fff;
+}
+.sidebar-helpline-content p:last-child{
+  margin-bottom: 0;
+}
+.sidebar-helpline-content i{
+  margin-right: 5px;
+}
+.sidebar-content .range-slider{
+  margin: 20px 0 0;
+}
+.range-slider .ui-slider-range.ui-widget-header.ui-corner-all.whole{
+  background: #ccc;
+}
+.comment-item{
+  display: flex;
+  border: 1px solid #f1f1f1;
+  padding: 20px;
+  margin-bottom: 30px;
+}
+.comment-image {
+  flex: 0 1 75px;
+  padding: 0 20px 0 0;
+}
+.detail-content .comment-image{
+  padding: 0;
+}
+.comment-item:last-child{
+  margin-bottom: 0;
+}
+.comment-image{
+  text-align: center;
+}
+.comment-image img{
+  overflow: hidden;
+  border-radius: 50%;
+  width: 75px;
+  height: 75px;
+}
+.comment-reply .comment-image img{
+  height: 50px;
+  width: 50px;
+}
+.comment-image h4{
+  margin: 10px 0 0 0;
+}
+.comment-desc{
+  margin-bottom: 20px;
+}
+.comment-reply .comment-desc{
+  margin-bottom: 0;
+}
+.comment-desc h4{
+  display: inline-block;
+}
+.comment-desc p{
+  margin: 0;
+}
+span.comment-date{
+  display: block;
+  font-size: 12px;
+  margin-bottom: 7px;
+}
+.comment-image a.btn-blue{
+  font-size: 12px;
+  padding: 5px 15px;
+}
+.comment-desc .deal-rating{
+  display: inline-block;
+  margin: 0 0 15px 0;
+}
+span.travel-date{
+  float: right;
+  font-size: 12px;
+}
+span.bold{
+  font-weight: 500;
+}
+.comment-btn{
+  margin-top: 10px;
+}
+.comments-form textarea,
+.comments-form input{
+  background: #fff;
+}
+.sidebar-slider .slick-prev{
+  left: 0;
+}
+.sidebar-slider .slick-next{
+  right: 0;
+}
+.event-list li{
+  border-bottom: 1px dashed #eee;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+}
+.event-list li:last-child{
+  border-bottom: none;
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
+.event-list li a{
+  color: #555;
+}
+.event-list li a:hover{
+  color: #0D74BA;
+}
+.comment-reply{
+  background: #fff;
+  margin-bottom: 10px;
+}
+
+@media(max-width: 640px){
+  .detail-content .comment-image{padding-bottom: 10px;}
 }

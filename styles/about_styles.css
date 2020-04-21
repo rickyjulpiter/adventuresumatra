@@ -481,7 +481,7 @@ section
 
 .main_nav_container
 {
-	margin-right: 221px;
+	margin-right: 180px; /* previous 221 */
 }
 .main_nav_item
 {

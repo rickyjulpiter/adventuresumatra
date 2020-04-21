@@ -1,10 +1,11 @@
+<?php include 'koneksi.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <title>Adventure Sumatra</title>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="description" content="Travelix Project">
+<meta name="description" content="Adventure Sumatra">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" type="text/css" href="styles/bootstrap4/bootstrap.min.css">
 <link href="plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -14,6 +15,14 @@
 <link rel="stylesheet" type="text/css" href="styles/main_styles.css">
 <link rel="stylesheet" type="text/css" href="styles/responsive.css">
 </head>
+
+<?php
+function limit_words($string, $word_limit)
+{
+    $words = explode(" ", $string);
+    return implode(" ", array_splice($words, 0, $word_limit));
+}
+?>
 
 <body>
 
@@ -51,22 +60,48 @@
 
 		<!-- Main Navigation -->
 
-		<nav class="main_nav">
+
+		<nav class="main_nav" style="background: rgba(145, 180, 150, 0.3);">
 			<div class="container">
 				<div class="row">
 					<div class="col main_nav_col d-flex flex-row align-items-center justify-content-start">
 						<div class="logo_container">
-							<div class="logo"><a href="#"><img src="images/logo.png" alt=""></a></div>
+							<div class="logo"><a href="#"><img src="images/logo2.png" alt=""></a></div>
 						</div>
 						<div class="main_nav_container ml-auto">
 							<ul class="main_nav_list">
 								<li class="main_nav_item"><a href="#">home</a></li>
 								<li class="main_nav_item"><a href="about.html">about us</a></li>
-								<li class="main_nav_item"><a href="single_listing.html">tour packages</a></li>
+								<li class="main_nav_item">
+                                    <a href="destination-area-detaill?destination=Medan" style="font-size: 12px;">Destination <i class="fa fa-angle-down"></i></a>
+                                    <ul style="display: none;" class="dropdownUL">
+                                        <?php
+                                        $query_destinasi = mysqli_query($koneksi, "SELECT * FROM destinasi ORDER BY prioritas ASC") or die(mysqli_error());
+                                        while ($data = mysqli_fetch_array($query_destinasi)) {
+                                            $idDestinasi = $data['id'];
+                                            $namaDestinasi = $data['nama'];
+                                        ?>
+                                            <li>
+                                                <a href="destination-detail?destination=<?php echo $namaDestinasi; ?>"><?php echo $namaDestinasi; ?> <i class="arrow-indicator fa fa-angle-right"></i></a>
+                                                <ul style="display: none;">
+                                                    <?php
+                                                    $query_area_destinasi = mysqli_query($koneksi, "SELECT * FROM destinasi_area WHERE destinasi_id = '$idDestinasi' ORDER BY prioritas ASC") or die(mysqli_error());
+                                                    while ($area = mysqli_fetch_array($query_area_destinasi)) {
+                                                        $namaDestinasiArea = $area['nama_area'];
+                                                    ?>
+                                                        <li><a href="destination-area-detail?destination=<?php echo $namaDestinasiArea; ?>"><?php echo $namaDestinasiArea; ?></a></li>
+                                                    <?php } ?>
+                                                </ul>
+                                            </li>
+                                        <?php } ?>
+                                    </ul>
+                                </li>
+								<li class="main_nav_item"><a href="tourr?tourID=2">tour packages</a></li>
 								<li class="main_nav_item"><a href="blog.html">news</a></li>
 								<li class="main_nav_item"><a href="contact.html">contact</a></li>
 							</ul>
 						</div>
+						<!--
 						<div class="content_search ml-lg-0 ml-auto">
 							<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 							width="17px" height="17px" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve">
@@ -89,11 +124,11 @@
 									</g>
 								</g>
 							</svg>
-						</div>
+						</div> 
 
 						<form id="search_form" class="search_form bez_1">
 							<input type="search" class="search_content_input bez_1">
-						</form>
+						</form> -->
 
 						<div class="hamburger">
 							<i class="fa fa-bars trans_200"></i>
@@ -467,7 +502,7 @@
 	-->
 	<!-- Intro -->
 	
-	<div class="intro">
+	<div class="intro" style="background-image:url(images/bgleaf.jpg);background-size: 50%;">
 		<div class="container">
 			<div class="row">
 				<div class="col">
@@ -481,12 +516,12 @@
 					</div>
 				</div>
 			</div>
-			<div class="row intro_items">
+			<div class="row intro_items"">
 
 				<!-- Intro Item -->
 
-				<div class="col-lg-4 intro_col">
-					<div class="intro_item">
+				<div class="col-lg-4 intro_col"">
+					<div class="intro_item"">
 						<div class="intro_item_overlay"></div>
 						<!-- Image by https://unsplash.com/@dnevozhai -->
 						<div class="intro_item_background" style="background-image:url(images/nsgery2.jpg)"></div>
@@ -824,8 +859,8 @@
 
 	<!-- Testimonials -->
 
-	<div class="testimonials">
-		<div class="test_border"></div>
+	<div class="testimonials" style="background-image:url(images/bgleaf.jpg);background-size: 50%;">
+		<!--<div class="test_border"></div>-->
 		<div class="container">
 			<div class="row">
 				<div class="col text-center">
@@ -847,10 +882,6 @@
 									<!--<div class="test_icon"><img src="images/backpack.png" alt=""></div>-->
 									<div class="test_content_container">
 										<div class="test_content">
-											<div class="test_item_info">
-												<div class="test_name">carla smith</div>
-												<div class="test_date">May 24, 2017</div>
-											</div>
 											<div class="test_quote_title">" Best holliday ever "</div>
 											<p class="test_quote_text">Nullam eu convallis tortor. Suspendisse potenti. In faucibus massa arcu, vitae cursus mi hendrerit nec.</p>
 										</div>
@@ -865,10 +896,10 @@
 									<!--<div class="test_icon"><img src="images/island_t.png" alt=""></div>-->
 									<div class="test_content_container">
 										<div class="test_content">
-											<div class="test_item_info">
+											<!--<div class="test_item_info">
 												<div class="test_name">carla smith</div>
 												<div class="test_date">May 24, 2017</div>
-											</div>
+											</div> -->
 											<div class="test_quote_title">" Best holliday ever "</div>
 											<p class="test_quote_text">Nullam eu convallis tortor. Suspendisse potenti. In faucibus massa arcu, vitae cursus mi hendrerit nec.</p>
 										</div>
@@ -883,10 +914,6 @@
 									<!--<div class="test_icon"><img src="images/kayak.png" alt=""></div>-->
 									<div class="test_content_container">
 										<div class="test_content">
-											<div class="test_item_info">
-												<div class="test_name">carla smith</div>
-												<div class="test_date">May 24, 2017</div>
-											</div>
 											<div class="test_quote_title">" Best holliday ever "</div>
 											<p class="test_quote_text">Nullam eu convallis tortor. Suspendisse potenti. In faucibus massa arcu, vitae cursus mi hendrerit nec.</p>
 										</div>
@@ -898,13 +925,8 @@
 							<div class="owl-item">
 								<div class="test_item">
 									<div class="test_image"><img src="images/test_2.jpg" alt=""></div>
-									<div class="test_icon"><img src="images/island_t.png" alt=""></div>
 									<div class="test_content_container">
 										<div class="test_content">
-											<div class="test_item_info">
-												<div class="test_name">carla smith</div>
-												<div class="test_date">May 24, 2017</div>
-											</div>
 											<div class="test_quote_title">" Best holliday ever "</div>
 											<p class="test_quote_text">Nullam eu convallis tortor. Suspendisse potenti. In faucibus massa arcu, vitae cursus mi hendrerit nec.</p>
 										</div>
@@ -916,13 +938,8 @@
 							<div class="owl-item">
 								<div class="test_item">
 									<div class="test_image"><img src="images/test_1.jpg" alt=""></div>
-									<div class="test_icon"><img src="images/backpack.png" alt=""></div>
 									<div class="test_content_container">
 										<div class="test_content">
-											<div class="test_item_info">
-												<div class="test_name">carla smith</div>
-												<div class="test_date">May 24, 2017</div>
-											</div>
 											<div class="test_quote_title">" Best holliday ever "</div>
 											<p class="test_quote_text">Nullam eu convallis tortor. Suspendisse potenti. In faucibus massa arcu, vitae cursus mi hendrerit nec.</p>
 										</div>
@@ -934,13 +951,8 @@
 							<div class="owl-item">
 								<div class="test_item">
 									<div class="test_image"><img src="images/test_3.jpg" alt=""></div>
-									<div class="test_icon"><img src="images/kayak.png" alt=""></div>
 									<div class="test_content_container">
 										<div class="test_content">
-											<div class="test_item_info">
-												<div class="test_name">carla smith</div>
-												<div class="test_date">May 24, 2017</div>
-											</div>
 											<div class="test_quote_title">" Best holliday ever "</div>
 											<p class="test_quote_text">Nullam eu convallis tortor. Suspendisse potenti. In faucibus massa arcu, vitae cursus mi hendrerit nec.</p>
 										</div>
@@ -1103,7 +1115,6 @@
 		</div>
 	</div>
 	-->
-
 	<div class="contact">
 		<div class="contact_background" style="background-image:url(images/contact.png)"></div>
 
@@ -1130,146 +1141,95 @@
 		</div>
 	</div>
 
-	<!-- Footer 
+	<!-- Footer -->
 
-	<footer class="footer">
-		<div class="container">
-			<div class="row">
-
-				
-				<div class="col-lg-3 footer_column">
-					<div class="footer_col">
-						<div class="footer_content footer_about">
-							<div class="logo_container footer_logo">
-								<div class="logo"><a href="#"><img src="images/logo.png" alt="">travelix</a></div>
-							</div>
-							<p class="footer_about_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus quis vu lputate eros, iaculis consequat nisl. Nunc et suscipit urna. Integer eleme ntum orci eu vehicula pretium.</p>
-							<ul class="footer_social_list">
-								<li class="footer_social_item"><a href="#"><i class="fa fa-pinterest"></i></a></li>
-								<li class="footer_social_item"><a href="#"><i class="fa fa-facebook-f"></i></a></li>
-								<li class="footer_social_item"><a href="#"><i class="fa fa-twitter"></i></a></li>
-								<li class="footer_social_item"><a href="#"><i class="fa fa-dribbble"></i></a></li>
-								<li class="footer_social_item"><a href="#"><i class="fa fa-behance"></i></a></li>
-							</ul>
-						</div>
-					</div>
-				</div>
-
-				
-				<div class="col-lg-3 footer_column">
-					<div class="footer_col">
-						<div class="footer_title">blog posts</div>
-						<div class="footer_content footer_blog">
-							
-							
-							<div class="footer_blog_item clearfix">
-								<div class="footer_blog_image"><img src="images/footer_blog_1.jpg" alt="https://unsplash.com/@avidenov"></div>
-								<div class="footer_blog_content">
-									<div class="footer_blog_title"><a href="blog.html">Travel with us this year</a></div>
-									<div class="footer_blog_date">Nov 29, 2017</div>
-								</div>
-							</div>
-							
-							
-							<div class="footer_blog_item clearfix">
-								<div class="footer_blog_image"><img src="images/footer_blog_2.jpg" alt="https://unsplash.com/@deannaritchie"></div>
-								<div class="footer_blog_content">
-									<div class="footer_blog_title"><a href="blog.html">New destinations for you</a></div>
-									<div class="footer_blog_date">Nov 29, 2017</div>
-								</div>
-							</div>
-
-							
-							<div class="footer_blog_item clearfix">
-								<div class="footer_blog_image"><img src="images/footer_blog_3.jpg" alt="https://unsplash.com/@bergeryap87"></div>
-								<div class="footer_blog_content">
-									<div class="footer_blog_title"><a href="blog.html">Travel with us this year</a></div>
-									<div class="footer_blog_date">Nov 29, 2017</div>
-								</div>
-							</div>
-
-						</div>
-					</div>
-				</div>
-
-				
-				<div class="col-lg-3 footer_column">
-					<div class="footer_col">
-						<div class="footer_title">tags</div>
-						<div class="footer_content footer_tags">
-							<ul class="tags_list clearfix">
-								<li class="tag_item"><a href="#">design</a></li>
-								<li class="tag_item"><a href="#">fashion</a></li>
-								<li class="tag_item"><a href="#">music</a></li>
-								<li class="tag_item"><a href="#">video</a></li>
-								<li class="tag_item"><a href="#">party</a></li>
-								<li class="tag_item"><a href="#">photography</a></li>
-								<li class="tag_item"><a href="#">adventure</a></li>
-								<li class="tag_item"><a href="#">travel</a></li>
-							</ul>
-						</div>
-					</div>
-				</div>
-
-				
-				<div class="col-lg-3 footer_column">
-					<div class="footer_col">
-						<div class="footer_title">contact info</div>
-						<div class="footer_content footer_contact">
-							<ul class="contact_info_list">
-								<li class="contact_info_item d-flex flex-row">
-									<div><div class="contact_info_icon"><img src="images/placeholder.svg" alt=""></div></div>
-									<div class="contact_info_text">4127 Raoul Wallenber 45b-c Gibraltar</div>
-								</li>
-								<li class="contact_info_item d-flex flex-row">
-									<div><div class="contact_info_icon"><img src="images/phone-call.svg" alt=""></div></div>
-									<div class="contact_info_text">2556-808-8613</div>
-								</li>
-								<li class="contact_info_item d-flex flex-row">
-									<div><div class="contact_info_icon"><img src="images/message.svg" alt=""></div></div>
-									<div class="contact_info_text"><a href="mailto:contactme@gmail.com?Subject=Hello" target="_top">contactme@gmail.com</a></div>
-								</li>
-								<li class="contact_info_item d-flex flex-row">
-									<div><div class="contact_info_icon"><img src="images/planet-earth.svg" alt=""></div></div>
-									<div class="contact_info_text"><a href="https://colorlib.com">www.colorlib.com</a></div>
-								</li>
-							</ul>
-						</div>
-					</div>
-				</div>
-
+	<div class="container" style="margin-top: 100px;">
+            <div class="col text-center">
+					<h2 class="section_title">news & events</h2>
 			</div>
-		</div>
-	</footer>
-	-->
-	<!-- Copyright 
+            <div class="col-md-12 col-sm-12">
+                <div class="blog-wrapper">
+                    <div class="row">
+                        <?php
+                        $query_mysql = mysqli_query($koneksi, "SELECT * FROM news ORDER BY id DESC LIMIT 4") or die(mysqli_error());
+                        while ($data = mysqli_fetch_array($query_mysql)) {
+                            $id = $data['id'];
+                            $nama = $data['nama'];
+                            $deskripsi = $data['deskripsi'];
+                            $gambar = $data['gambar'];
+                        ?>
+                            <div class="col-sm-3 col-xs-12">
+                                <div class="blog-item">
+                                    <div class="blog-image" style="background-color:white">
+                                        <img src="<?= $gambar ?>" alt="Image" style="width:240px; height:120px;object-fit: contain;background-color:white">
+                                    </div>
+                                    <div class="blog-content" style="height:250px">
+                                        <h5>
+                                            <a href="news-detail?id=<?= $id ?>"><?php echo limit_words(strip_tags(trim($deskripsi)), 20) . "..."; ?></p>
+                                                <div class="blog-date">
+                                                    <p>Click for Detail</p>
+                                                </div>
+                                        </h5>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php } ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+	<div class="container" style="margin-top: -50px;">
+            <div class="col text-center">
+				<h2 class="section_title">our partners</h2>
+			</div>
+            <div class="row">
+                <?php
+                $query_mysql = mysqli_query($koneksi, "SELECT * FROM partner") or die(mysqli_error());
+                while ($data = mysqli_fetch_array($query_mysql)) {
+                    $idPartner = $data['id'];
+                    $namaPartner = $data['nama'];
+                    $link = $data['link'];
+                    $gambarPartner = $data['gambar'];
+                ?>
+                    <!--<a href="<?= $link ?>">-->
+                    <a target="_blank" href="http://<?= $link ?>">
+                        <div class="col-md-3" style="margin-bottom:10px;">
+                            <img src="<?php echo $gambarPartner ?>" alt="Image" style="width:240px; height:120px;object-fit:contain;">
+                        </div>
+                    </a>
+                <?php } ?>
+            </div>
+        </div>
+
+	<!-- Copyright -->
 
 	<div class="copyright">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-3 order-lg-1 order-2  ">
 					<div class="copyright_content d-flex flex-row align-items-center">
-						<div> Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. 
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. </div>
+						<div><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | Tour travel by by <a href="https://sistempintar.com" target="_blank">Sistem Pintar</a>
+<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></div>
 					</div>
 				</div>
-				<div class="col-lg-9 order-lg-2 order-1">
+				<!--<div class="col-lg-9 order-lg-2 order-1">
 					<div class="footer_nav_container d-flex flex-row align-items-center justify-content-lg-end">
 						<div class="footer_nav">
 							<ul class="footer_nav_list">
-								<li class="footer_nav_item"><a href="#">home</a></li>
-								<li class="footer_nav_item"><a href="about.html">about us</a></li>
+								<li class="footer_nav_item"><a href="index.html">home</a></li>
+								<li class="footer_nav_item"><a href="#">about us</a></li>
 								<li class="footer_nav_item"><a href="offers.html">offers</a></li>
 								<li class="footer_nav_item"><a href="blog.html">news</a></li>
 								<li class="footer_nav_item"><a href="contact.html">contact</a></li>
 							</ul>
 						</div>
 					</div>
-				</div>
+				</div>-->
 			</div>
 		</div>
-	</div> -->
+	</div>
 
 </div>
 
