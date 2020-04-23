@@ -1,21 +1,14 @@
 <?php include 'koneksi.php';
 
-// $namaTour = $_GET['tourName'];
+$namaWisata = $_GET['destination'];
 
-if (isset($_GET['tourName'])) {
-    $namaTour = $_GET['tourName'];
-} else if (isset($_GET['tourID'])) {
-    $idTour = $_GET['tourID'];
-}
-//echo($namaTour);
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Single Listing</title>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="description" content="Travelix Project">
+<meta name="description" content="Adventure Sumatra">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" type="text/css" href="styles/bootstrap4/bootstrap.min.css">
 <link href="plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -23,24 +16,28 @@ if (isset($_GET['tourName'])) {
 <link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/owl.carousel.css">
 <link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
 <link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/animate.css">
+<link rel="stylesheet" type="text/css" href="styles/main_styles.css">
 <link rel="stylesheet" type="text/css" href="styles/single_listing_styles.css">
 <link rel="stylesheet" type="text/css" href="styles/single_listing_responsive.css">
 </head>
 
 <body>
-<?php
-    $queryTour = mysqli_query($koneksi, "SELECT * FROM paket_wisata WHERE id = '$idTour '") or die(mysqli_error());
-    $detail = mysqli_fetch_assoc($queryTour);
-    $idTourPackages = $detail['id'];
-    $nama_tour = $detail['nama'];
-    $deskripsi_tour = $detail['deskripsi'];
-    $peta_tour = $detail['peta'];
-    $timeline_tour = $detail['timeline'];
+	<?php
+    $query_sql = "SELECT * FROM destinasi WHERE nama = '$namaWisata'";
+    $queryDetailDestinasi = mysqli_query($koneksi, $query_sql) or die(mysqli_error());
+    $data = mysqli_fetch_assoc($queryDetailDestinasi);
+    $idDestinasi = $data['id'];
+    $namaDestinasi = $data['nama'];
+    $deskripsi_singkatDestinasi = $data['deskripsi_singkat'];
+    $deskripsiDestinasi = $data['deskripsi'];
+    $gambarDestinasi = $data['gambar'];
 
-    $queryBreadCumb = mysqli_query($koneksi, "SELECT gambar FROM paket_wisata_gambar WHERE paket_wisata_id = '$idTour' LIMIT 1") or die(mysqli_error());
-    $tampilGambar = mysqli_fetch_assoc($queryBreadCumb);
-    $gambarBreadCumb = $tampilGambar['gambar'];
+    $query = "SELECT gambar FROM destinasi_gambar WHERE destinasi_id = '$idDestinasi'";
+    $query_mysql = mysqli_query($koneksi, $query) or die(mysqli_error());
+    $data = mysqli_fetch_assoc($query_mysql);
+    $gambarBreadCumb = $data['gambar'];
     ?>
+
 <div class="super_container">
 	
 	<!-- Header -->
@@ -117,9 +114,9 @@ if (isset($_GET['tourName'])) {
 	<!-- Home -->
 
 	<div class="home">
-		<div class="home_background parallax-window" data-parallax="scroll" data-image-src="<?= $gambarBreadCumb; ?>"></div>
+		<div class="home_background1 parallax-windoww" data-parallax="scroll" data-image-src="<?= $gambarBreadCumb ?>"></div>
 		<div class="home_content">
-			<div class="home_title1"><?php echo ($nama_tour); ?></div>
+			<div class="home_title"><?php echo $namaDestinasi; ?></div>
 		</div>
 	</div>
 
@@ -164,7 +161,7 @@ if (isset($_GET['tourName'])) {
 							Listing Image -->
 
 							<div class="hotel_image">
-								<img src="<?= $gambarBreadCumb; ?>" alt="">
+								<img src="<?= $gambarBreadCumb ?>" alt="">
 								<!--<div class="hotel_review_container d-flex flex-column align-items-center justify-content-center">
 									<div class="hotel_review">
 										<div class="hotel_review_content">
@@ -183,22 +180,24 @@ if (isset($_GET['tourName'])) {
 									<div class="owl-carousel owl-theme hotel_slider">
 
 										<!-- Hotel Gallery Slider Item -->
-										<?php
-	                                    $i = 0;
-	                                    $query_mysql = mysqli_query($koneksi, "SELECT gambar FROM paket_wisata_gambar WHERE paket_wisata_id = '$idTourPackages' ") or die(mysqli_error());
-	                                    while ($data = mysqli_fetch_array($query_mysql)) {
-	                                        $gambar = $data['gambar'];
-	                                        ?>
-	                                        <div class="owl-item">
-												<a id="climg" class="colorbox cboxElement" href="<?= $gambar ?>"height="500px">
-													<img src="<?= $gambar ?>" alt="in_th_030_01">
-												</a>
-											</div>
-	                                        <!-- End of Slide -->
-	                                    <?php $i++;
-	                                    } ?>
-										
 
+                                    <!-- First Slide -->
+                                    <?php
+                                    $i = 0;
+                                    $query_mysql = mysqli_query($koneksi, "SELECT dg.gambar FROM destinasi_gambar AS dg INNER JOIN destinasi AS d ON dg.destinasi_id = d.id WHERE d.nama = '$namaDestinasi' ") or die(mysqli_error());
+                                    while ($data = mysqli_fetch_array($query_mysql)) {
+                                        $gambar = $data['gambar'];
+                                    ?>
+                                        <div class="owl-item">
+                                        	<a class="colorbox cboxElement" href="<?= $gambar ?>">
+												<img src="<?= $gambar ?>" alt="in_th_030_01">
+											</a>
+										</div>
+
+                                        <!-- End of Slide -->
+                                    <?php $i++;
+                                    } ?>
+										
 
 										<!-- Hotel Gallery Slider Item 
 										<div class="owl-item">
@@ -288,19 +287,13 @@ if (isset($_GET['tourName'])) {
 								<!--<li class="nav-item">
 								<a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Reviews</a>
 								</li>-->
-								<li class="nav-item">
-								<a class="nav-link" id="messages-tab" data-toggle="tab" href="#messages" role="tab" aria-controls="messages" aria-selected="false">Map</a>
-								</li>
-								<li class="nav-item">
-								<a class="nav-link" id="settings-tab" data-toggle="tab" href="#settings" role="tab" aria-controls="settings" aria-selected="false">Intienary</a>
-								</li>
 							</ul>
   
 							<!-- Tab panes -->
 							<div class="tab-content">
 								<div class="tab-pane active" id="home" role="tabpanel" aria-labelledby="home-tab">
 									<div class="hotel_info_text">
-									<p><?php echo $deskripsi_tour; ?></p>
+									<p><?php echo ($deskripsiDestinasi); ?></p>
 									</div>
 								</div>
 								<!--
@@ -369,7 +362,7 @@ if (isset($_GET['tourName'])) {
 										<div class="travelix_map">
 											<div id="google_map" class="google_map">
 												<div class="map_container" align="center">
-													<?php echo $peta_tour ?>
+													<iframe src="https://www.google.com/maps/embed?pb=!1m64!1m12!1m3!1d505205.5458021163!2d115.0101294760185!3d-8.409682413175135!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m49!3e0!4m5!1s0x2dd2441650216933%3A0xdf71da6ddd7bcc1f!2sNgurah%20Rai%20International%20Airport%20(DPS)%2C%20Jalan%20Raya%20Gusti%20Ngurah%20Rai%2C%20Tuban%2C%20Badung%20Regency%2C%20Bali!3m2!1d-8.746717199999999!2d115.166787!4m5!1s0x2dd23d6a8d1ac1cd%3A0x89468df6e4c9d611!2sUbud%20Centre%2C%20Jalan%20Suweta%2C%20Ubud%2C%20Gianyar%2C%20Bali!3m2!1d-8.5064817!2d115.2624187!4m5!1s0x2dd1f45d6c8fe87d%3A0x448d1ad48814ee43!2sBatur%20Mountain%20View%2C%20South%20Batur%2C%20Bangli%20Regency%2C%20Bali!3m2!1d-8.2594514!2d115.3411172!4m5!1s0x2dd21e398e4623fd%3A0x3030bfbca7cbef0!2sBangli%2C%20Bali!3m2!1d-8.2975884!2d115.3548713!4m5!1s0x2dd2092cb3cd7f25%3A0x871e3813fed35ad5!2sCandidasa%20Beach%2C%20Bali!3m2!1d-8.5099736!2d115.5685065!4m5!1s0x2dd19b40a35dbf07%3A0x7500ee0f7e30527c!2sLovina%20Beach%2C%20Bali!3m2!1d-8.161140999999999!2d115.02435659999999!4m5!1s0x2dd186110077a85f%3A0x5030bfbca830680!2sMunduk%2C%20Buleleng%20Regency%2C%20Bali!3m2!1d-8.2666267!2d115.054678!4m5!1s0x2dd2471c804bfd05%3A0xdcc2b5ae63dc9082!2sSeminyak%20Beach%2C%20Bali!3m2!1d-8.691193!2d115.157141!5e0!3m2!1sen!2sid!4v1577716885569!5m2!1sen!2sid" width="900" height="450" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
 												</div>
 											</div>
 										</div>
@@ -379,7 +372,7 @@ if (isset($_GET['tourName'])) {
 								<div class="tab-pane" id="settings" role="tabpanel" aria-labelledby="settings-tab">
 									<div class="hotel_info_text">
 										
-											<?php echo $timeline_tour; ?></div>
+											lorem ipsum
 										
 									</div>
 								</div>
@@ -408,12 +401,36 @@ if (isset($_GET['tourName'])) {
 						
 
 						<!-- Reviews -->
-
+						
 
 						<!-- Location on Map -->
 
+
 					</div>
+
 				</div>
+				<!-- destinasi area -->
+                        
+                            <?php
+                            $query_mysql = mysqli_query($koneksi, "SELECT B.id_area, B.nama_area, B.deskripsi_area, B.deskripsi_area_singkat, B.prioritas, C.gambar FROM destinasi A, destinasi_area B, destinasi_area_gambar C WHERE A.id = B.destinasi_id AND B.id_area = C.destinasi_area_id AND A.nama = '$namaWisata' GROUP BY B.nama_area ORDER BY B.prioritas ASC") or die(mysqli_error());
+                            while ($data = mysqli_fetch_array($query_mysql)) {
+                                $idDestinasi = $data['id_area'];
+                                $namaDestinasi = $data['nama_area'];
+                                $deskripsiDestinasi = $data['deskripsi_area'];
+                                $gambarDestinasi = $data['gambar'];
+                            ?>
+                                <a href="destination-area-detaill?destination=<?php echo $namaDestinasi; ?>">
+                                    <div class="col-md-4 col-sm-6 col-xs-12">
+                                        <div class="package-item">
+                                            <img src="<?php echo $gambarDestinasi ?>" alt="Image" height="200px" width="350px" style="object-fit: cover;">
+                                            <div class="package-content" style="padding:10px;height:120px;">
+                                                <h2 style="text-align: center;"><a href="destination-area-detaill?destination=<?php echo $namaDestinasi; ?>" style="font-size:20px;color: green; text-align: center;"><?php echo $namaDestinasi ?></a></h2>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            <?php } ?>
+                       
 			</div>
 		</div>		
 	</div>

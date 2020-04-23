@@ -7,6 +7,14 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="description" content="Adventure Sumatra">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script src="js/jquery-3.2.1.min.js"></script>
+<script src="styles/bootstrap4/popper.js"></script>
+<script src="styles/bootstrap4/bootstrap.min.js"></script>
+<script src="plugins/OwlCarousel2-2.2.1/owl.carousel.js"></script>
+<script src="plugins/easing/easing.js"></script>
+<script src="js/custom.js"></script>
 <link rel="stylesheet" type="text/css" href="styles/bootstrap4/bootstrap.min.css">
 <link href="plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/owl.carousel.css">
@@ -14,6 +22,7 @@
 <link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/animate.css">
 <link rel="stylesheet" type="text/css" href="styles/main_styles.css">
 <link rel="stylesheet" type="text/css" href="styles/responsive.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 </head>
 
 <?php
@@ -25,6 +34,7 @@ function limit_words($string, $word_limit)
 ?>
 
 <body>
+
 	<?php
     $queryTentang = mysqli_query($koneksi, "SELECT * FROM tentang WHERE id = 1") or die(mysqli_error());
     $tentang = mysqli_fetch_assoc($queryTentang);
@@ -76,12 +86,12 @@ function limit_words($string, $word_limit)
 							<div class="logo"><a href="#"><img src="images/logo2.png" alt=""></a></div>
 						</div>
 						<div class="main_nav_container ml-auto">
-							<ul class="main_nav_list">
+							<ul class="main_nav_list" id="Mennu">
 								<li class="main_nav_item"><a href="#">home</a></li>
 								<li class="main_nav_item"><a href="about.html">about us</a></li>
 								<li class="main_nav_item">
                                     <a href="destination-area-detaill?destination=Medan" style="font-size: 12px;">Destination <i class="fa fa-angle-down"></i></a>
-                                    <ul style="display: none;" class="dropdownUL">
+                                    <ul>
                                         <?php
                                         $query_destinasi = mysqli_query($koneksi, "SELECT * FROM destinasi ORDER BY prioritas ASC") or die(mysqli_error());
                                         while ($data = mysqli_fetch_array($query_destinasi)) {
@@ -89,14 +99,14 @@ function limit_words($string, $word_limit)
                                             $namaDestinasi = $data['nama'];
                                         ?>
                                             <li>
-                                                <a href="destination-detail?destination=<?php echo $namaDestinasi; ?>"><?php echo $namaDestinasi; ?> <i class="arrow-indicator fa fa-angle-right"></i></a>
+                                                <a href="destination-detaill?destination=<?php echo $namaDestinasi; ?>"><?php echo $namaDestinasi; ?> <i class="arrow-indicator fa fa-angle-right"></i></a>
                                                 <ul style="display: none;">
                                                     <?php
                                                     $query_area_destinasi = mysqli_query($koneksi, "SELECT * FROM destinasi_area WHERE destinasi_id = '$idDestinasi' ORDER BY prioritas ASC") or die(mysqli_error());
                                                     while ($area = mysqli_fetch_array($query_area_destinasi)) {
                                                         $namaDestinasiArea = $area['nama_area'];
                                                     ?>
-                                                        <li><a href="destination-area-detail?destination=<?php echo $namaDestinasiArea; ?>"><?php echo $namaDestinasiArea; ?></a></li>
+                                                        <li><a href="destination-area-detaill?destination=<?php echo $namaDestinasiArea; ?>"><?php echo $namaDestinasiArea; ?></a></li>
                                                     <?php } ?>
                                                 </ul>
                                             </li>
@@ -1186,6 +1196,8 @@ function limit_words($string, $word_limit)
             </div>
         </div>
 
+
+
 	<div class="container" style="margin-top: -50px;">
             <div class="col text-center">
 				<h2 class="section_title">our partners</h2>
@@ -1208,6 +1220,7 @@ function limit_words($string, $word_limit)
                 <?php } ?>
             </div>
         </div>
+
 
 	<!-- Copyright -->
 
@@ -1239,13 +1252,6 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 	</div>
 
 </div>
-
-<script src="js/jquery-3.2.1.min.js"></script>
-<script src="styles/bootstrap4/popper.js"></script>
-<script src="styles/bootstrap4/bootstrap.min.js"></script>
-<script src="plugins/OwlCarousel2-2.2.1/owl.carousel.js"></script>
-<script src="plugins/easing/easing.js"></script>
-<script src="js/custom.js"></script>
 
 </body>
 
