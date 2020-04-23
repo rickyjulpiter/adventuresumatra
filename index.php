@@ -25,7 +25,14 @@ function limit_words($string, $word_limit)
 ?>
 
 <body>
-
+	<?php
+    $queryTentang = mysqli_query($koneksi, "SELECT * FROM tentang WHERE id = 1") or die(mysqli_error());
+    $tentang = mysqli_fetch_assoc($queryTentang);
+    $whatsapp = $tentang['whatsapp'];
+    ?>
+    <a href="https://wa.me/<?= $whatsapp ?>" class="float" target="_blank">
+        <i class="fa fa-whatsapp my-float"></i> Contact Us
+    </a>
 <div class="super_container">
 	
 	<!-- Header -->
