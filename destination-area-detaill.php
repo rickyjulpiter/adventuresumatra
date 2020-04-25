@@ -72,7 +72,7 @@ $namaWisata = $_GET['destination'];
 
 		<!-- Main Navigation -->
 
-		<nav class="main_nav" style="background: rgba(145, 180, 150, 0.3);">
+		<nav class="main_nav" style="background: rgba(38, 166, 91, 0.8);">
 			<div class="container">
 				<div class="row">
 					<div class="col main_nav_col d-flex flex-row align-items-center justify-content-start">
@@ -85,8 +85,8 @@ $namaWisata = $_GET['destination'];
 								<li class="main_nav_item"><a href="about.html">about us</a></li>
 								<li class="main_nav_item"><a href="destination-area-detaill?destination=Medan">destination</a></li>
 								<li class="main_nav_item"><a href="tourr?tourID=2">tour packages</a></li>
-								<li class="main_nav_item"><a href="blog.html">news</a></li>
-								<li class="main_nav_item"><a href="contact.html">contact</a></li>
+								<!--<li class="main_nav_item"><a href="blog.html">news</a></li>-->
+								<li class="main_nav_item"><a href="contact.php">contact</a></li>
 							</ul>
 						</div>
 						

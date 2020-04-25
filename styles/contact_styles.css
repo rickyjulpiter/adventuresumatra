@@ -222,6 +222,7 @@ section
 {
 	width: 100%;
 	overflow: hidden;
+	color: black;
 }
 .prlx_parent
 {
@@ -798,7 +799,7 @@ section
 	padding-left: 98px;
 	padding-right: 98px;
 	padding-bottom: 88px;
-	background: linear-gradient(to top right, #fa9e1b, #8d4fff);
+	background: linear-gradient(to top right, #00FF00, #90EE90); /* #fa9e1b, #8d4fff); */
 }
 .contact_title
 {
@@ -1317,4 +1318,77 @@ section
 .footer_nav_item a:hover
 {
 	color: #FFFFFF;
+}
+
+.table_item .form-group{
+  position: relative;
+  margin-right: 0px;
+}
+.table_item .form-icon{
+  margin-bottom: 0;
+}
+.table_item .form-group i{
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 9;
+}
+
+input[type=text],
+input[type=email],
+input[type=number],
+input[type=search],
+input[type=password],
+input[type=tel],
+input[type=date],
+textarea,
+select,
+.form-control {
+  font-size: 14px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  background-color: #fff;
+  border: 1px solid #eceaea;
+  border-radius:0px;
+  padding: 10px 25px;
+  width: 100%;
+  color: #444444;
+  height: auto;
+  margin-bottom: 0px; 
+  box-shadow: none;
+}
+
+input[type=text]:focus,
+input[type=email]:focus,
+input[type=number]:focus,
+input[type=search]:focus,
+input[type=password]:focus,
+input[type=tel]:focus,
+input[type=date]:focus,
+textarea:focus,
+select:focus {
+  border-color: #66afe9;
+  transition: all 0.5s ease; 
+}
+textarea {
+  resize: vertical;
+  height: 200px; 
+}
+
+.table_item textarea, 
+.table_item select,
+.table_item .form-control{
+  padding: 11px 40px;
+   }
+
+.sidebar-item .comment-btn .btn-blue{
+  display: block;
+  width: 100%;
+  text-align: center;
+  color: #fff;
+}
+
+.comment-btn{
+  margin-left: 20px;
+  margin-top: -50px;
 }

@@ -78,7 +78,7 @@ function limit_words($string, $word_limit)
 		<!-- Main Navigation -->
 
 
-		<nav class="main_nav" style="background: rgba(145, 180, 150, 0.3);">
+		<nav class="main_nav" style="background: rgba(38, 166, 91, 0.8);">
 			<div class="container">
 				<div class="row">
 					<div class="col main_nav_col d-flex flex-row align-items-center justify-content-start">
@@ -100,7 +100,7 @@ function limit_words($string, $word_limit)
                                         ?>
                                             <li>
                                                 <a href="destination-detaill?destination=<?php echo $namaDestinasi; ?>"><?php echo $namaDestinasi; ?> <i class="arrow-indicator fa fa-angle-right"></i></a>
-                                                <ul style="display: none;">
+                                                <ul>
                                                     <?php
                                                     $query_area_destinasi = mysqli_query($koneksi, "SELECT * FROM destinasi_area WHERE destinasi_id = '$idDestinasi' ORDER BY prioritas ASC") or die(mysqli_error());
                                                     while ($area = mysqli_fetch_array($query_area_destinasi)) {
@@ -114,8 +114,8 @@ function limit_words($string, $word_limit)
                                     </ul>
                                 </li>
 								<li class="main_nav_item"><a href="tourr?tourID=2">tour packages</a></li>
-								<li class="main_nav_item"><a href="blog.html">news</a></li>
-								<li class="main_nav_item"><a href="contact.html">contact</a></li>
+								<!--<li class="main_nav_item"><a href="blog.html">news</a></li> -->
+								<li class="main_nav_item"><a href="contact.php">contact</a></li>
 							</ul>
 						</div>
 						<!--

@@ -1782,7 +1782,7 @@ section
 {
 	font-size: 30px;
 	font-weight: 700;
-	color: #FFFFFF;
+	color: #000000;
 	text-transform: uppercase;
 }
 .contact_form_container
@@ -1806,7 +1806,7 @@ section
 	border: none;
 	outline: none;
 	background: transparent;
-	color: #FFFFFF;
+	color: #000000;
 	border-bottom: solid 2px #e1e1e1;
 }
 .contact_form_name
@@ -1833,7 +1833,7 @@ section
 	background: transparent;
 	font-size: 12px;
 	font-weight: 400;
-	color: #FFFFFF;
+	color: #000000;
 	border-bottom: solid 2px #e1e1e1;
 	padding-top: 11px;
 }
@@ -1866,35 +1866,35 @@ section
 {
 	font-size: 12px !important;
 	font-weight: 400 !important;
-	color: #FFFFFF !important;
+	color: #000000 !important;
 }
 .input_field:-moz-placeholder,
 .text_field:-moz-placeholder
 {
 	font-size: 12px !important;
 	font-weight: 400 !important;
-	color: #FFFFFF !important;
+	color: #000000 !important;
 }
 .input_field::-moz-placeholder,
 .text_field::-moz-placeholder
 {
 	font-size: 12px !important;
 	font-weight: 400 !important;
-	color: #FFFFFF !important;
+	color: #000000 !important;
 } 
 .input_field:-ms-input-placeholder,
 .text_field:-ms-input-placeholder
 { 
 	font-size: 12px !important;
 	font-weight: 400 !important;
-	color: #FFFFFF !important;
+	color: #000000 !important;
 }
 .input_field::input-placeholder,
 .text_field::input-placeholder
 {
 	font-size: 12px !important;
 	font-weight: 400 !important;
-	color: #FFFFFF !important;
+	color: #000000 !important;
 }
 
 /*********************************
@@ -2926,9 +2926,10 @@ list-style:none;
 #Mennu { list-style:none;}
 #Mennu li:hover > ul {display:block;}
 #Mennu li ul { margin:0; padding:0; position:absolute;z-index:5;padding-top:6px;}
+#Mennu li ul li ul { margin:0; padding:0; position:absolute;z-index:5;margin-left: 140px;margin-top: -20px;}
 #Mennu li { float:left; margin-left:10px; }
 #Mennu li ul li { float:none; margin:0; display:inline;}
-#Mennu li ul li a {display:block; padding:6px 10px; background:#333; white-space:nowrap;}
+#Mennu li ul li a {display:block; padding:6px 10px; background:#8FBC8F; white-space:nowrap;}
 #Mennu li { display: list-item; text-align: -webkit-match-parent;}
 #Mennu ul { border:0; font-size:100%; font:inherit;vertical-align:baseline;}
 
