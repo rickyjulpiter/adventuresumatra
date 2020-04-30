@@ -1,8 +1,4 @@
-<?php include 'koneksi.php';
-
-$namaWisata = $_GET['destination'];
-
-?>
+<?php include 'koneksi.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -53,7 +49,7 @@ $namaWisata = $_GET['destination'];
 
 		<!-- Main Navigation -->
 
-		<nav class="main_nav" style="background: rgba(145, 180, 150, 0.3);">
+		<nav class="main_nav" style="background: rgba(38, 166, 91, 0.8);">
 			<div class="container">
 				<div class="row">
 					<div class="col main_nav_col d-flex flex-row align-items-center justify-content-start">
@@ -101,8 +97,8 @@ $namaWisata = $_GET['destination'];
 	</div>
 
 	<!-- Contact -->
-
-	<section class="contact" style="background: url(3040791.jpg) no-repeat;background-size: cover;">
+	<br>
+	 <section class="contact" style="background: url(3040791.jpg) no-repeat;background-size: cover;">
         <div class="container">
             <div class="row">
                 <div class="col-md-8">
@@ -112,27 +108,27 @@ $namaWisata = $_GET['destination'];
 
                         <form method="post" action="contact-aksi">
                             <div class="row">
-                                <div class="form-group col-xs-12">
+                                <div class="form-group col-md-12">
                                     <label>Company Name:</label>
                                     <input type="text" name="company_name" class="form-control" id="Name" placeholder="Enter company name">
                                 </div>
-                                <div class="form-group col-xs-12">
+                                <div class="form-group col-md-12">
                                     <label>Full Name:</label>
                                     <input type="text" name="full_name" class="form-control" id="Name" placeholder="Enter full name" required>
                                 </div>
-                                <div class="form-group col-xs-6">
+                                <div class="form-group col-md-6">
                                     <label>Email:</label>
                                     <input type="email" name="email" class="form-control" id="email" placeholder="abc@xyz.com" required>
                                 </div>
-                                <div class="form-group col-xs-6 col-left-padding">
+                                <div class="form-group col-md-6 col-left-padding">
                                     <label>Phone Number:</label>
                                     <input type="text" name="telepon" class="form-control" id="phnumber" placeholder="XXXX-XXXXXX" required>
                                 </div>
-                                <div class="form-group col-xs-12">
+                                <div class="form-group col-md-12">
                                     <label>Subject:</label>
                                     <input type="text" name="subject" class="form-control" id="Name" placeholder="Enter subject" required>
                                 </div>
-                                <div class="textarea col-xs-12">
+                                <div class="textarea col-md-12">
                                     <label>Message:</label>
                                     <textarea name="pesan" placeholder="Enter message" required></textarea>
                                 </div>
@@ -156,7 +152,7 @@ $namaWisata = $_GET['destination'];
                                 <div class="col-xs-12">
                                     <input type="hidden" name="verif" value="<?php echo ($captchaCode) ?>">
                                     <div class="comment-btn">
-                                        <input type="submit" class="btn-blue btn-red" id="submit" value="Send Message">
+                                        <input type="submit" class="form_submit_button button" id="submit" value="Send Message">
                                     </div>
                                 </div>
                             </div>
@@ -167,13 +163,13 @@ $namaWisata = $_GET['destination'];
         </div>
     </section>
 
-	<!-- About -->
+	<!-- About 
 	<div class="about">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-5">
 					
-					<!-- About - Image -->
+					<!-- About - Image 
 
 					<div class="about_image">
 						<img src="images/man.png" alt="">
@@ -183,7 +179,7 @@ $namaWisata = $_GET['destination'];
 
 				<div class="col-lg-4">
 					
-					<!-- About - Content -->
+					<!-- About - Content 
 
 					<div class="about_content">
 						<div class="logo_container about_logo">
@@ -203,7 +199,7 @@ $namaWisata = $_GET['destination'];
 
 				<div class="col-lg-3">
 					
-					<!-- About Info -->
+					<!-- About Info 
 
 					<div class="about_info">
 						<ul class="contact_info_list">
@@ -230,17 +226,11 @@ $namaWisata = $_GET['destination'];
 
 			</div>
 		</div>
-	</div>
+	</div> -->
 
 	<!-- Google Map -->
 		
-	<div class="travelix_map">
-		<div id="google_map" class="google_map">
-			<div class="map_container">
-				<div id="map"></div>
-			</div>
-		</div>
-	</div>
+	
 
 	<!-- Footer -->
 
