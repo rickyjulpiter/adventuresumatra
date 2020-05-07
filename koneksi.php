@@ -7,9 +7,9 @@
 
 
 $svr_name = "localhost";
-$user = "u4502442_ravelinotravel";
+$user = "u9070309_ravelinotravel";
 $password = "HB1~LE#fJhN@";
-$dbname = "u4502442_ravelinotravel";
+$dbname = "u9070309_ravelinotravel";
 
 
 $koneksi = mysqli_connect($svr_name, $user, $password, $dbname);
