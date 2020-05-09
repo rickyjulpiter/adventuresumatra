@@ -78,7 +78,7 @@ function limit_words($string, $word_limit)
 		<!-- Main Navigation -->
 
 
-		<nav class="main_nav" style="background: rgba(38, 166, 91, 0.8);">
+		<nav class="main_nav" style="background: rgba(110, 177, 12, 0.8);">
 			<div class="container">
 				<div class="row">
 					<div class="col main_nav_col d-flex flex-row align-items-center justify-content-start">
@@ -88,7 +88,7 @@ function limit_words($string, $word_limit)
 						<div class="main_nav_container ml-auto">
 							<ul class="main_nav_list" id="Mennu">
 								<li class="main_nav_item"><a href="#">home</a></li>
-								<li class="main_nav_item"><a href="about.html">about us</a></li>
+								<li class="main_nav_item"><a href="about.php">about us</a></li>
 								<li class="main_nav_item">
                                     <a href="destination-area-detaill?destination=Medan" style="font-size: 12px;">Destination <i class="fa fa-angle-down"></i></a>
                                     <ul>
@@ -113,7 +113,21 @@ function limit_words($string, $word_limit)
                                         <?php } ?>
                                     </ul>
                                 </li>
-								<li class="main_nav_item"><a href="tourr?tourID=2">tour packages</a></li>
+								<li class="main_nav_item"><a href="#">tour packages<i class="fa fa-angle-down"></i></a>
+									<ul>
+                                        <?php
+                                        // $query_destinasi = mysqli_query($koneksi, "SELECT DISTINCT(d.id),d.nama FROM paket_wisata_detail AS pwd INNER JOIN destinasi_area AS da ON pwd.destinasi_area_id = da.id_area INNER JOIN destinasi AS d ON d.id = da.destinasi_id ORDER BY d.id ASC") or die(mysqli_error());
+                                        $query_destinasi = mysqli_query($koneksi, "SELECT * FROM destinasi ORDER BY prioritas ASC LIMIT 6") or die(mysqli_error());
+                                        while ($data = mysqli_fetch_array($query_destinasi)) {
+                                            $idDestinasi = $data['id'];
+                                            $namaDestinasi = $data['nama'];
+                                        ?>
+                                            <li>
+                                                <a href="tour-listt?name=<?= $namaDestinasi ?>"><?= $namaDestinasi ?></a>
+                                            </li>
+                                        <?php } ?>
+                                    </ul>
+								</li>
 								<!--<li class="main_nav_item"><a href="blog.html">news</a></li> -->
 								<li class="main_nav_item"><a href="contact.php">contact</a></li>
 							</ul>
@@ -147,9 +161,9 @@ function limit_words($string, $word_limit)
 							<input type="search" class="search_content_input bez_1">
 						</form> -->
 
-						<div class="hamburger">
+						<!--<div class="hamburger">
 							<i class="fa fa-bars trans_200"></i>
-						</div>
+						</div> -->
 					</div>
 				</div>
 			</div>	
@@ -533,39 +547,152 @@ function limit_words($string, $word_limit)
 					</div>
 				</div>
 			</div>
+			<br>
+			<div class="l u-ml0">
+				<div class="u-1/1 u-1/2-lap u-1/3-desk">
+				<div class="category-card ">
+				<div class="category-card__img">
+				<div class="color-overlay color-overlay--rev color-overlay--brand color-overlay--parent">
+				<img src="images/nstoba.jpg" title="Lake Toba" alt="Toba 1">
+				</div>
+				</div>
+				<a href="#" class="plain">
+				</a><div class="category-card__body"><a href="#" class="plain">
+				<div class="intro_center">
+								<h1>North Sumatra</h1>
+							</div>
+				</a><div class="category-card__extra"><a href="#" class="plain">
+				</a>
+				</div>
+				</div>
+
+				</div>
+				</div>
+				<div class="u-1/1 u-1/2-lap u-1/3-desk">
+				<div class="category-card category-card--rev">
+				<div class="category-card__img">
+				<div class="color-overlay color-overlay--rev color-overlay--brand color-overlay--parent">
+				 <img src="images/wspiring.jpg" title="Kelok 9" alt="Kelok 9">
+				</div>
+				</div>
+				<a href="#" class="plain">
+				</a><div class="category-card__body"><a href="#" class="plain">
+				<div class="intro_center">
+								<h1>West Sumatra</h1>
+							</div>
+				</a><div class="category-card__extra"><a href="#" class="plain"></a>
+				</div>
+				</div>
+
+				</div>
+				</div>
+				<div class="u-1/1 u-1/2-lap u-1/3-desk">
+				<div class="category-card ">
+				<div class="category-card__img">
+				<div class="color-overlay color-overlay--rev color-overlay--brand color-overlay--parent">
+				<img src="images/ssampera.jpg" title="Ampera" alt="Ampera 1">
+				</div>
+				</div>
+				<a href="#" class="plain">
+				</a><div class="category-card__body"><a href="#" class="plain">
+				<div class="intro_center">
+								<h1>South Sumatra</h1>
+							</div>
+				</a><div class="category-card__extra"><a href="#" class="plain"></a>
+				</div>
+				</div>
+
+				</div>
+				</div>
+				<div class="u-1/1 u-1/2-lap u-1/3-desk">
+				<div class="category-card category-card--rev">
+				<div class="category-card__img">
+				<div class="color-overlay color-overlay--rev color-overlay--brand color-overlay--parent">
+				<img src="images/jiborobudur.jpg" title="Borobudur" alt="Borobudur">
+				</div>
+				</div>
+				<a href="#" class="plain">
+				</a><div class="category-card__body"><a href="#" class="plain">
+				<div class="intro_center">
+								<h1>Java Island</h1>
+							</div>
+				</a><div class="category-card__extra"><a href="#" class="plain"></a>
+				</div>
+				</div>
+
+				</div>
+				</div>
+				<div class="u-1/1 u-1/2-lap u-1/3-desk">
+				<div class="category-card ">
+				<div class="category-card__img">
+				<div class="color-overlay color-overlay--rev color-overlay--brand color-overlay--parent">
+				<img src="images/bnlot.jpg" title="Tanah Lot" alt="Tanah Lot">
+				</div>
+				</div>
+				<a href="#" class="plain">
+				</a><div class="category-card__body"><a href="#" class="plain">
+				<div class="intro_center">
+								<h1>Bali - Nusa Tenggara</h1>
+							</div>
+				</a><div class="category-card__extra"><a href="#" class="plain"></a>
+				</div>
+				</div>
+
+				</div>
+				</div>
+				<div class="u-1/1 u-1/2-lap u-1/3-desk">
+				<div class="category-card category-card--rev">
+				<div class="category-card__img">
+				<div class="color-overlay color-overlay--rev color-overlay--brand color-overlay--parent">
+				<img src="images/eiampat.jpg" title="Raja Ampat" alt="Ampat">
+				</div>
+				</div>
+				<a href="#" class="plain">
+				</a><div class="category-card__body"><a href="#" class="plain">
+				<div class="intro_center">
+								<h1>East Indonesia</h1>
+							</div>
+				</a><div class="category-card__extra"><a href="#" class="plain"></a>
+				 </div>
+				</div>
+
+				</div>
+				</div>
+			</div>
+			<!--
 			<div class="row intro_items"">
 
-				<!-- Intro Item -->
+				<!-- Intro Item 
 
 				<div class="col-lg-4 intro_col"">
 					<div class="intro_item"">
 						<div class="intro_item_overlay"></div>
-						<!-- Image by https://unsplash.com/@dnevozhai -->
+						<!-- Image by https://unsplash.com/@dnevozhai 
 						<div class="intro_item_background" style="background-image:url(images/nsgery2.jpg)"></div>
 						<div class="intro_item_content d-flex flex-column align-items-center justify-content-center">
-							<!--<div class="intro_date">May 25th - June 01st</div>-->
+							<!--<div class="intro_date">May 25th - June 01st</div>
 							<div class="button intro_button"><div class="button_bcg"></div><a href="#">see more<span></span><span></span><span></span></a></div>
 							<div class="intro_center text-center">
 								<h1>Northern Sumatra</h1>
-								<!--<div class="intro_price">From $1450</div>-->
+								<!--<div class="intro_price">From $1450</div>
 								<!--<div class="rating rating_4">
 									<i class="fa fa-star"></i>
 									<i class="fa fa-star"></i>
 									<i class="fa fa-star"></i>
 									<i class="fa fa-star"></i>
 									<i class="fa fa-star"></i>
-								</div>-->
+								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 
-				<!-- Intro Item -->
+				<!-- Intro Item 
 
 				<div class="col-lg-4 intro_col">
 					<div class="intro_item">
 						<div class="intro_item_overlay"></div>
-						<!-- Image by https://unsplash.com/@hellolightbulb -->
+						<!-- Image by https://unsplash.com/@hellolightbulb 
 						<div class="intro_item_background" style="background-image:url(images/wsgery2.jpg)"></div>
 						<div class="intro_item_content d-flex flex-column align-items-center justify-content-center">
 							<div class="button intro_button"><div class="button_bcg"></div><a href="#">see more<span></span><span></span><span></span></a></div>
@@ -576,12 +703,12 @@ function limit_words($string, $word_limit)
 					</div>
 				</div>
 
-				<!-- Intro Item -->
+				<!-- Intro Item 
 
 				<div class="col-lg-4 intro_col">
 					<div class="intro_item">
 						<div class="intro_item_overlay"></div>
-						<!-- Image by https://unsplash.com/@willianjusten -->
+						<!-- Image by https://unsplash.com/@willianjusten 
 						<div class="intro_item_background" style="background-image:url(images/ssgery2.jpg)"></div>
 						<div class="intro_item_content d-flex flex-column align-items-center justify-content-center">
 							<div class="button intro_button"><div class="button_bcg"></div><a href="#">see more<span></span><span></span><span></span></a></div>
@@ -595,32 +722,32 @@ function limit_words($string, $word_limit)
 				<div class="col-lg-4 intro_col">
 					<div class="intro_item">
 						<div class="intro_item_overlay"></div>
-						<!-- Image by https://unsplash.com/@dnevozhai -->
+						<!-- Image by https://unsplash.com/@dnevozhai 
 						<div class="intro_item_background" style="background-image:url(images/jigery2.jpg)"></div>
 						<div class="intro_item_content d-flex flex-column align-items-center justify-content-center">
-							<!--<div class="intro_date">May 25th - June 01st</div>-->
+							<!--<div class="intro_date">May 25th - June 01st</div>
 							<div class="button intro_button"><div class="button_bcg"></div><a href="#">see more<span></span><span></span><span></span></a></div>
 							<div class="intro_center text-center">
 								<h1>Java Island</h1>
-								<!--<div class="intro_price">From $1450</div>-->
+								<!--<div class="intro_price">From $1450</div>
 								<!--<div class="rating rating_4">
 									<i class="fa fa-star"></i>
 									<i class="fa fa-star"></i>
 									<i class="fa fa-star"></i>
 									<i class="fa fa-star"></i>
 									<i class="fa fa-star"></i>
-								</div>-->
+								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 
-				<!-- Intro Item -->
+				<!-- Intro Item 
 
 				<div class="col-lg-4 intro_col">
 					<div class="intro_item">
 						<div class="intro_item_overlay"></div>
-						<!-- Image by https://unsplash.com/@hellolightbulb -->
+						<!-- Image by https://unsplash.com/@hellolightbulb 
 						<div class="intro_item_background" style="background-image:url(images/bngery2.jpg)"></div>
 						<div class="intro_item_content d-flex flex-column align-items-center justify-content-center">
 							<div class="button intro_button"><div class="button_bcg"></div><a href="#">see more<span></span><span></span><span></span></a></div>
@@ -631,12 +758,12 @@ function limit_words($string, $word_limit)
 					</div>
 				</div>
 
-				<!-- Intro Item -->
+				<!-- Intro Item 
 
 				<div class="col-lg-4 intro_col">
 					<div class="intro_item">
 						<div class="intro_item_overlay"></div>
-						<!-- Image by https://unsplash.com/@willianjusten -->
+						<!-- Image by https://unsplash.com/@willianjusten 
 						<div class="intro_item_background" style="background-image:url(images/eigery2.jpg)"></div>
 						<div class="intro_item_content d-flex flex-column align-items-center justify-content-center">
 							<div class="button intro_button"><div class="button_bcg"></div><a href="#">see more<span></span><span></span><span></span></a></div>
@@ -646,7 +773,7 @@ function limit_words($string, $word_limit)
 						</div>
 					</div>
 				</div>
-			</div>
+			</div> -->
 		</div>
 	</div>
 
@@ -1230,7 +1357,7 @@ function limit_words($string, $word_limit)
 				<div class="col-lg-3 order-lg-1 order-2  ">
 					<div class="copyright_content d-flex flex-row align-items-center">
 						<div><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | Tour travel by by <a href="https://sistempintar.com" target="_blank">Sistem Pintar</a>
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | Tour travel by by <a href="https://sistempintar.com" target="_blank" style="color:black;">Sistem Pintar</a>
 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></div>
 					</div>
 				</div>

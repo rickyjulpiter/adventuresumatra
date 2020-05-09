@@ -1,3 +1,4 @@
+<?php include 'koneksi.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,6 +17,13 @@
 </head>
 
 <body>
+<?php
+function limit_words($string, $word_limit)
+{
+    $words = explode(" ", $string);
+    return implode(" ", array_splice($words, 0, $word_limit));
+}
+?>
 
 <div class="super_container">
 	
@@ -51,7 +59,7 @@
 
 		<!-- Main Navigation -->
 
-		<nav class="main_nav" style="background: rgba(145, 180, 150, 0.3);">
+		<nav class="main_nav" style="background: rgba(110, 177, 12, 0.8);">
 			<div class="container">
 				<div class="row">
 					<div class="col main_nav_col d-flex flex-row align-items-center justify-content-start">
@@ -60,8 +68,8 @@
 						</div>
 						<div class="main_nav_container ml-auto">
 							<ul class="main_nav_list" id="Mennu">
-								<li class="main_nav_item"><a href="#">home</a></li>
-								<li class="main_nav_item"><a href="about.html">about us</a></li>
+								<li class="main_nav_item"><a href="index.php">home</a></li>
+								<li class="main_nav_item"><a href="#">about us</a></li>
 								<li class="main_nav_item">
                                     <a href="destination-area-detaill?destination=Medan" style="font-size: 12px;">Destination <i class="fa fa-angle-down"></i></a>
                                     <ul>
