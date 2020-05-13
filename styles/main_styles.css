@@ -1162,8 +1162,12 @@ section
 .intro_title
 {
 	font-weight: 700;
-	color: #2d2c2c;
+	color: white;
 	margin-top: -14px;
+	font-family: 'Beyond';
+	font-size: 72px;
+	text-shadow: -2px -2px 0 #000, -2px -2px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+	
 }
 .intro_text
 {
@@ -1176,6 +1180,7 @@ section
 	color: #929191;
 	line-height: 1.336;
 	margin-bottom: 0px;
+	text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
 }
 .intro_items
 {

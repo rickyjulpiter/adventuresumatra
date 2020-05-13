@@ -533,7 +533,7 @@ function limit_words($string, $word_limit)
 	-->
 	<!-- Intro -->
 	
-	<div class="intro" style="background-image:url(images/bgleaf.jpg);background-size: 50%;">
+	<div class="intro" style="background-image:url(images/leafbg2.jpg);">
 		<div class="container">
 			<div class="row">
 				<div class="col">
@@ -543,7 +543,7 @@ function limit_words($string, $word_limit)
 			<div class="row">
 				<div class="col-lg-10 offset-lg-1">
 					<div class="intro_text text-center">
-						<p>Indonesia is a very unique destination located in South east region. The country is famous throughout the world for its islands and beautiful landscapes. </p>
+						<!-- <p>Indonesia is a very unique destination located in South east region. The country is famous throughout the world for its islands and beautiful landscapes. </p> -->
 					</div>
 				</div>
 			</div>
@@ -1003,12 +1003,12 @@ function limit_words($string, $word_limit)
 
 	<!-- Testimonials -->
 
-	<div class="testimonials" style="background-image:url(images/bgleaf.jpg);background-size: 50%;">
+	<div class="testimonials" style="background-image:url(images/leafbg2.png);">
 		<!--<div class="test_border"></div>-->
 		<div class="container">
 			<div class="row">
 				<div class="col text-center">
-					<h2 class="section_title">what our clients say about us</h2>
+					<h2 class="section_title" style="">what our clients say about us</h2>
 				</div>
 			</div>
 			<div class="row">
