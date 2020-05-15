@@ -1234,13 +1234,13 @@ function limit_words($string, $word_limit)
 		<div class="copyright">
 			<div class="container">
 				<div class="row">
-					<div class="col-lg-3 order-lg-1 order-2  ">
+					<div class="col-lg-12 order-lg-1 order-2  ">
 						<div class="copyright_content d-flex flex-row align-items-center">
-							<div>
+							<div style="color:white">
 								<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 								Copyright &copy;<script>
 									document.write(new Date().getFullYear());
-								</script> All rights reserved | Tour travel by by <a href="https://sistempintar.com" target="_blank" style="color:black;">Sistem Pintar</a>
+								</script> All rights reserved | Tour travel by by <a href="https://sistempintar.com" target="_blank" style="color:white;">Sistem Pintar</a>
 								<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 							</div>
 						</div>
