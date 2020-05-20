@@ -79,7 +79,7 @@ function limit_words($string, $word_limit)
 			<!-- Main Navigation -->
 
 
-			<nav class="main_nav" style="background: rgba(110, 177, 12, 0.8);">
+			<nav class="main_nav" style="background: #b0c321;">
 				<div class="container">
 					<div class="row">
 						<div class="col main_nav_col d-flex flex-row align-items-center justify-content-start">
