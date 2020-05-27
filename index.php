@@ -549,8 +549,8 @@ function limit_words($string, $word_limit)
 			</div>
 			<br>
 			<div class="l u-ml0">
-				<div class="u-1/1 u-1/2-lap u-1/3-desk">
-				<div class="category-card ">
+				<div class="u-1/1 u-1/2-lap u-1/3-desk" style="padding: 5px;">
+				<div class="category-card " style="background-image:url(images/frametd.jpeg);border: 10px solid transparent;">
 				<div class="category-card__img">
 				<div class="color-overlay color-overlay--rev color-overlay--brand color-overlay--parent">
 				<img src="images/nstoba.jpg" title="Lake Toba" alt="Toba 1">
@@ -568,8 +568,9 @@ function limit_words($string, $word_limit)
 
 				</div>
 				</div>
-				<div class="u-1/1 u-1/2-lap u-1/3-desk">
-				<div class="category-card category-card--rev">
+
+				<div class="u-1/1 u-1/2-lap u-1/3-desk" style="padding: 5px;">
+				<div class="category-card category-card--rev" style="background-image:url(images/frametd.jpeg);border: 10px solid transparent;">
 				<div class="category-card__img">
 				<div class="color-overlay color-overlay--rev color-overlay--brand color-overlay--parent">
 				 <img src="images/wspiring.jpg" title="Kelok 9" alt="Kelok 9">
@@ -586,8 +587,8 @@ function limit_words($string, $word_limit)
 
 				</div>
 				</div>
-				<div class="u-1/1 u-1/2-lap u-1/3-desk">
-				<div class="category-card ">
+				<div class="u-1/1 u-1/2-lap u-1/3-desk" style="padding: 5px;">
+				<div class="category-card " style="background-image:url(images/frametd.jpeg);border: 10px solid transparent;">
 				<div class="category-card__img">
 				<div class="color-overlay color-overlay--rev color-overlay--brand color-overlay--parent">
 				<img src="images/ssampera.jpg" title="Ampera" alt="Ampera 1">
@@ -604,8 +605,8 @@ function limit_words($string, $word_limit)
 
 				</div>
 				</div>
-				<div class="u-1/1 u-1/2-lap u-1/3-desk">
-				<div class="category-card category-card--rev">
+				<div class="u-1/1 u-1/2-lap u-1/3-desk" style="padding: 5px;">
+				<div class="category-card category-card--rev" style="background-image:url(images/frametd.jpeg);border: 10px solid transparent;">
 				<div class="category-card__img">
 				<div class="color-overlay color-overlay--rev color-overlay--brand color-overlay--parent">
 				<img src="images/jiborobudur.jpg" title="Borobudur" alt="Borobudur">
@@ -622,8 +623,8 @@ function limit_words($string, $word_limit)
 
 				</div>
 				</div>
-				<div class="u-1/1 u-1/2-lap u-1/3-desk">
-				<div class="category-card ">
+				<div class="u-1/1 u-1/2-lap u-1/3-desk" style="padding: 5px;">
+				<div class="category-card " style="background-image:url(images/frametd.jpeg);border: 10px solid transparent;">
 				<div class="category-card__img">
 				<div class="color-overlay color-overlay--rev color-overlay--brand color-overlay--parent">
 				<img src="images/bnlot.jpg" title="Tanah Lot" alt="Tanah Lot">
@@ -640,8 +641,8 @@ function limit_words($string, $word_limit)
 
 				</div>
 				</div>
-				<div class="u-1/1 u-1/2-lap u-1/3-desk">
-				<div class="category-card category-card--rev">
+				<div class="u-1/1 u-1/2-lap u-1/3-desk" style="padding: 5px">
+				<div class="category-card category-card--rev" style="background-image:url(images/frametd.jpeg);border: 10px solid transparent;">
 				<div class="category-card__img">
 				<div class="color-overlay color-overlay--rev color-overlay--brand color-overlay--parent">
 				<img src="images/eiampat.jpg" title="Raja Ampat" alt="Ampat">
