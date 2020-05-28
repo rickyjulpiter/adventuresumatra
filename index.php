@@ -201,7 +201,7 @@ function limit_words($string, $word_limit)
 					<!-- Slider Item -->
 					<div class="owl-item home_slider_item">
 						<!-- Image by https://unsplash.com/@anikindimitry -->
-						<div class="home_slider_background" style="background-image:url(images/tour47-0-Toraja-House-Sulawesi.jpeg)"></div>
+						<div class="home_slider_background" style="background-image:url(images/tour43-0-Kecak-Uluwatu-Bali.jpg)"></div>
 
 						<div class="home_slider_content text-center">
 							<div class="home_slider_content_inner" data-animation-in="flipInX" data-animation-out="animate-out fadeOut">
