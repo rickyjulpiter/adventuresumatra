@@ -553,12 +553,24 @@ function limit_words($string, $word_limit)
 						<h2 class="intro_title text-center">Tour Destinations</h2>
 					</div>
 				</div>
+<<<<<<< HEAD
+			</div>
+			<br>
+			<div class="l u-ml0">
+				<div class="u-1/1 u-1/2-lap u-1/3-desk" style="padding: 5px;">
+				<div class="category-card " style="background-image:url(images/frametd.jpeg);border: 10px solid transparent;">
+				<div class="category-card__img">
+				<div class="color-overlay color-overlay--rev color-overlay--brand color-overlay--parent">
+				<img src="images/nstoba.jpg" title="Lake Toba" alt="Toba 1">
+				</div>
+=======
 				<div class="row">
 					<div class="col-lg-10 offset-lg-1">
 						<div class="intro_text text-center">
 							<!-- <p>Indonesia is a very unique destination located in South east region. The country is famous throughout the world for its islands and beautiful landscapes. </p> -->
 						</div>
 					</div>
+>>>>>>> 998a2b4df4fa140b6ca90e598e4b244143221094
 				</div>
 				<br>
 				<div class="l u-ml0">
@@ -581,6 +593,22 @@ function limit_words($string, $word_limit)
 								</div>
 							</div>
 
+<<<<<<< HEAD
+				</div>
+				</div>
+
+				<div class="u-1/1 u-1/2-lap u-1/3-desk" style="padding: 5px;">
+				<div class="category-card category-card--rev" style="background-image:url(images/frametd.jpeg);border: 10px solid transparent;">
+				<div class="category-card__img">
+				<div class="color-overlay color-overlay--rev color-overlay--brand color-overlay--parent">
+				 <img src="images/wspiring.jpg" title="Kelok 9" alt="Kelok 9">
+				</div>
+				</div>
+				<a href="#" class="plain">
+				</a><div class="category-card__body"><a href="#" class="plain">
+				<div class="intro_center">
+								<h1>West Sumatra</h1>
+=======
 						</div>
 					</div>
 					<div class="u-1/1 u-1/2-lap u-1/3-desk" style="padding: 5px;">
@@ -599,8 +627,24 @@ function limit_words($string, $word_limit)
 								</a>
 								<div class="category-card__extra"><a href="#" class="plain"></a>
 								</div>
+>>>>>>> 998a2b4df4fa140b6ca90e598e4b244143221094
 							</div>
 
+<<<<<<< HEAD
+				</div>
+				</div>
+				<div class="u-1/1 u-1/2-lap u-1/3-desk" style="padding: 5px;">
+				<div class="category-card " style="background-image:url(images/frametd.jpeg);border: 10px solid transparent;">
+				<div class="category-card__img">
+				<div class="color-overlay color-overlay--rev color-overlay--brand color-overlay--parent">
+				<img src="images/ssampera.jpg" title="Ampera" alt="Ampera 1">
+				</div>
+				</div>
+				<a href="#" class="plain">
+				</a><div class="category-card__body"><a href="#" class="plain">
+				<div class="intro_center">
+								<h1>South Sumatra</h1>
+=======
 						</div>
 					</div>
 					<div class="u-1/1 u-1/2-lap u-1/3-desk" style="padding: 5px;">
@@ -619,8 +663,24 @@ function limit_words($string, $word_limit)
 								</a>
 								<div class="category-card__extra"><a href="#" class="plain"></a>
 								</div>
+>>>>>>> 998a2b4df4fa140b6ca90e598e4b244143221094
 							</div>
 
+<<<<<<< HEAD
+				</div>
+				</div>
+				<div class="u-1/1 u-1/2-lap u-1/3-desk" style="padding: 5px;">
+				<div class="category-card category-card--rev" style="background-image:url(images/frametd.jpeg);border: 10px solid transparent;">
+				<div class="category-card__img">
+				<div class="color-overlay color-overlay--rev color-overlay--brand color-overlay--parent">
+				<img src="images/jiborobudur.jpg" title="Borobudur" alt="Borobudur">
+				</div>
+				</div>
+				<a href="#" class="plain">
+				</a><div class="category-card__body"><a href="#" class="plain">
+				<div class="intro_center">
+								<h1>Java Island</h1>
+=======
 						</div>
 					</div>
 					<div class="u-1/1 u-1/2-lap u-1/3-desk" style="padding: 5px;">
@@ -639,8 +699,24 @@ function limit_words($string, $word_limit)
 								</a>
 								<div class="category-card__extra"><a href="#" class="plain"></a>
 								</div>
+>>>>>>> 998a2b4df4fa140b6ca90e598e4b244143221094
 							</div>
 
+<<<<<<< HEAD
+				</div>
+				</div>
+				<div class="u-1/1 u-1/2-lap u-1/3-desk" style="padding: 5px;">
+				<div class="category-card " style="background-image:url(images/frametd.jpeg);border: 10px solid transparent;">
+				<div class="category-card__img">
+				<div class="color-overlay color-overlay--rev color-overlay--brand color-overlay--parent">
+				<img src="images/bnlot.jpg" title="Tanah Lot" alt="Tanah Lot">
+				</div>
+				</div>
+				<a href="#" class="plain">
+				</a><div class="category-card__body"><a href="#" class="plain">
+				<div class="intro_center">
+								<h1>Bali - Nusa Tenggara</h1>
+=======
 						</div>
 					</div>
 					<div class="u-1/1 u-1/2-lap u-1/3-desk" style="padding: 5px;">
@@ -659,8 +735,24 @@ function limit_words($string, $word_limit)
 								</a>
 								<div class="category-card__extra"><a href="#" class="plain"></a>
 								</div>
+>>>>>>> 998a2b4df4fa140b6ca90e598e4b244143221094
 							</div>
 
+<<<<<<< HEAD
+				</div>
+				</div>
+				<div class="u-1/1 u-1/2-lap u-1/3-desk" style="padding: 5px">
+				<div class="category-card category-card--rev" style="background-image:url(images/frametd.jpeg);border: 10px solid transparent;">
+				<div class="category-card__img">
+				<div class="color-overlay color-overlay--rev color-overlay--brand color-overlay--parent">
+				<img src="images/eiampat.jpg" title="Raja Ampat" alt="Ampat">
+				</div>
+				</div>
+				<a href="#" class="plain">
+				</a><div class="category-card__body"><a href="#" class="plain">
+				<div class="intro_center">
+								<h1>East Indonesia</h1>
+=======
 						</div>
 					</div>
 					<div class="u-1/1 u-1/2-lap u-1/3-desk" style="padding: 5px;">
@@ -679,6 +771,7 @@ function limit_words($string, $word_limit)
 								</a>
 								<div class="category-card__extra"><a href="#" class="plain"></a>
 								</div>
+>>>>>>> 998a2b4df4fa140b6ca90e598e4b244143221094
 							</div>
 
 						</div>
