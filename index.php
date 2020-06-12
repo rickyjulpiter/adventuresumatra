@@ -1,9 +1,15 @@
 <?php include 'koneksi.php'; ?>
+<?php
+	$queryTentang = mysqli_query($koneksi, "SELECT * FROM tentang WHERE id = 1") or die(mysqli_error());
+	$tentang = mysqli_fetch_assoc($queryTentang);
+	$whatsapp = $tentang['whatsapp'];
+	$nama = $tentang['nama'];
+	?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-	<title>Adventure Sumatra</title>
+	<title><?php echo $nama; ?></title>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="description" content="Adventure Sumatra">
@@ -36,11 +42,7 @@ function limit_words($string, $word_limit)
 
 <body>
 
-	<?php
-	$queryTentang = mysqli_query($koneksi, "SELECT * FROM tentang WHERE id = 1") or die(mysqli_error());
-	$tentang = mysqli_fetch_assoc($queryTentang);
-	$whatsapp = $tentang['whatsapp'];
-	?>
+	
 	<a href="https://wa.me/<?= $whatsapp ?>" class="float" target="_blank">
 		<i class="fa fa-whatsapp my-float"></i> Contact Us
 	</a>
@@ -197,24 +199,39 @@ function limit_words($string, $word_limit)
 			<div class="home_slider_container">
 
 				<div class="owl-carousel owl-theme home_slider">
-
+					<?php
+                $queryy_mysql = mysqli_query($koneksi,"SELECT * FROM (SELECT DISTINCT(pw.id),pw.nama AS nama,pw.deskripsi AS deskripsi,pwg.gambar FROM paket_wisata AS pw INNER JOIN paket_wisata_gambar AS pwg ON pw.id = pwg.paket_wisata_id) AS tabel GROUP BY id")or die(mysqli_error());
+                $noo = 0;
+                while($dataa = mysqli_fetch_array($queryy_mysql)){
+                    $iddDestinasi = $dataa['id'];
+                    $namaaDestinasi = $dataa['nama'];
+                    $deskripsiiDestinasi = $dataa['deskripsi'];
+                    $gambarrDestiansi = $dataa['gambar'];
+                    $noo++;
+                    if ($noo == 1) {
+                        $statuss = "active";
+                    }
+                    else {
+                        $statuss = "";
+                    }
+                	?>
 					<!-- Slider Item -->
 					<div class="owl-item home_slider_item">
 						<!-- Image by https://unsplash.com/@anikindimitry -->
-						<div class="home_slider_background" style="background-image:url(images/tour43-0-Kecak-Uluwatu-Bali.jpg)"></div>
+						<div class="home_slider_background" style="background-image:url(<?= $gambarrDestiansi ?>)"></div>
 
 						<div class="home_slider_content text-center">
 							<div class="home_slider_content_inner" data-animation-in="flipInX" data-animation-out="animate-out fadeOut">
-								<h1>the essential of</h1>
-								<h1>bali</h1>
+								<h1><?= strip_tags($namaaDestinasi); ?></h1>
+								<!--<h1>bali</h1>-->
 								<div class="button home_slider_button">
-									<div class="button_bcg"></div><a href="#">explore now<span></span><span></span><span></span></a>
+									<div class="button_bcg"></div><a href="tourr?tourID=<?= $iddDestinasi; ?>">explore now<span></span><span></span><span></span></a>
 								</div>
 							</div>
 						</div>
 					</div>
-
-					<!-- Slider Item -->
+					<?php } ?>
+					<!-- Slider Item 
 					<div class="owl-item home_slider_item">
 						<div class="home_slider_background" style="background-image:url(images/tour47-0-Toraja-House-Sulawesi.jpeg)"></div>
 
@@ -227,9 +244,9 @@ function limit_words($string, $word_limit)
 								</div>
 							</div>
 						</div>
-					</div>
+					</div> -->
 
-					<!-- Slider Item -->
+					<!-- Slider Item 
 					<div class="owl-item home_slider_item">
 						<div class="home_slider_background" style="background-image:url(images/tour46-0-Komodo.jpg)"></div>
 
@@ -242,7 +259,7 @@ function limit_words($string, $word_limit)
 								</div>
 							</div>
 						</div>
-					</div>
+					</div> -->
 
 				</div>
 
@@ -915,7 +932,13 @@ function limit_words($string, $word_limit)
 					</div>
 				</div>
 				<div class="row offers_items">
-
+					<?php
+                $query_mysqll = mysqli_query($koneksi, "SELECT * FROM (SELECT DISTINCT(pw.id),pw.nama AS nama,pw.deskripsi AS deskripsi,pwg.gambar FROM paket_wisata AS pw INNER JOIN paket_wisata_gambar AS pwg ON pw.id = pwg.paket_wisata_id) AS tabel GROUP BY id LIMIT 4") or die(mysqli_error());
+                while ($dataaa = mysqli_fetch_array($query_mysqll)) {
+                    $namaTourr = $dataaa['nama'];
+                    $deskripsiTourr = $dataaa['deskripsi'];
+                    $gambarTourr = $dataaa['gambar'];
+                	?>
 					<!-- Offers Item -->
 					<div class="col-lg-6 offers_col">
 						<div class="offers_item">
@@ -923,13 +946,13 @@ function limit_words($string, $word_limit)
 								<div class="col-lg-6">
 									<div class="offers_image_container">
 										<!-- Image by https://unsplash.com/@kensuarez -->
-										<div class="offers_image_background" style="background-image:url(images/tour43-0-Kecak-Uluwatu-Bali.jpg)"></div>
+										<div class="offers_image_background" style="background-image:url(<?= $gambarTourr ?>)"></div>
 										<!--<div class="offer_name"><a href="#"></a>grand castle</a></div>-->
 									</div>
 								</div>
 								<div class="col-lg-6">
 									<div class="offers_content">
-										<div class="offers_price">12 Days The Essential of Bali</div>
+										<div class="offers_price"><?php echo $namaTourr; ?></div>
 										<!--<div class="rating_r rating_r_4 offers_rating">
 										<i></i>
 										<i></i>
@@ -937,7 +960,7 @@ function limit_words($string, $word_limit)
 										<i></i>
 										<i></i>
 									</div>-->
-										<p class="offers_text">Suspendisse potenti. In faucibus massa. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eu convallis tortor.</p>
+										<p class="offers_text"><?php echo limit_words(strip_tags($deskripsiTourr), 20) . "..."; ?></p>
 										<!--<div class="offers_icons">
 										<ul class="offers_icons_list">
 											<li class="offers_icons_item"><img src="images/post.png" alt=""></li>
@@ -946,20 +969,20 @@ function limit_words($string, $word_limit)
 											<li class="offers_icons_item"><img src="images/sailboat.png" alt=""></li>
 										</ul>
 									</div>-->
-										<div class="offers_link"><a href="single_listing.html">read more</a></div>
+										<div class="offers_link"><a href="tourr?tourID=<?php echo $dataaa['id']; ?>">read more</a></div>
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
-
-					<!-- Offers Item -->
+					<?php } ?>
+					<!-- Offers Item 
 					<div class="col-lg-6 offers_col">
 						<div class="offers_item">
 							<div class="row">
 								<div class="col-lg-6">
 									<div class="offers_image_container">
-										<!-- Image by Egzon Bytyqi -->
+										<!-- Image by Egzon Bytyqi 
 										<div class="offers_image_background" style="background-image:url(images/tour47-0-Toraja-House-Sulawesi.jpeg)"></div>
 									</div>
 								</div>
@@ -974,13 +997,13 @@ function limit_words($string, $word_limit)
 						</div>
 					</div>
 
-					<!-- Offers Item -->
+					<!-- Offers Item 
 					<div class="col-lg-6 offers_col">
 						<div class="offers_item">
 							<div class="row">
 								<div class="col-lg-6">
 									<div class="offers_image_container">
-										<!-- Image by https://unsplash.com/@nevenkrcmarek -->
+										<!-- Image by https://unsplash.com/@nevenkrcmarek 
 										<div class="offers_image_background" style="background-image:url(images/tour46-0-Komodo.jpg)"></div>
 
 									</div>
@@ -998,13 +1021,13 @@ function limit_words($string, $word_limit)
 						</div>
 					</div>
 
-					<!-- Offers Item -->
+					<!-- Offers Item 
 					<div class="col-lg-6 offers_col">
 						<div class="offers_item">
 							<div class="row">
 								<div class="col-lg-6">
 									<div class="offers_image_container">
-										<!-- Image by https://unsplash.com/@mantashesthaven -->
+										<!-- Image by https://unsplash.com/@mantashesthaven 
 										<div class="offers_image_background" style="background-image:url(images/kogery.jpeg)"></div>
 
 									</div>
@@ -1020,7 +1043,7 @@ function limit_words($string, $word_limit)
 								</div>
 							</div>
 						</div>
-					</div>
+					</div> -->
 
 				</div>
 			</div>

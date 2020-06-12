@@ -1,4 +1,12 @@
-<?php include 'koneksi.php'; ?>
+<?php include 'koneksi.php';
+
+$queryTentang = mysqli_query($koneksi, "SELECT * FROM tentang WHERE id = 1") or die(mysqli_error());
+$tentang = mysqli_fetch_assoc($queryTentang);
+$namaTentang = $tentang['nama'];
+$deskripsiTentang = $tentang['deskripsi'];
+$staticImage = $tentang['static_image'];
+$slogan = $tentang['slogan'];
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -181,12 +189,12 @@ function limit_words($string, $word_limit)
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-7">
-					<div class="intro_image"><img src="images/intro.png" alt=""></div>
+					<div class="intro_image"><img src="<?= $staticImage ?>" alt="" style="padding-bottom: 15px;height:350px;width:650px;object-fit:contain"></div>
 				</div>
 				<div class="col-lg-5">
 					<div class="intro_content">
-						<div class="intro_title">we have the best tours</div>
-						<p class="intro_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus quis vulputate eros, iaculis consequat nisl. Nunc et suscipit urna. Integer elementum orci eu vehicula pretium. Donec bibendum tristique condimentum. Aenean in lacus ligula. Phasellus euismod gravida eros. Aenean nec ipsum aliquet, pharetra magna id, interdum sapien. Etiam id lorem eu nisl pellentesque semper. Nullam tincidunt metus placerat, suscipit leo ut, tempus nulla. Fusce at eleifend tellus. Ut eleifend dui nunc, non fermentum quam placerat non. Etiam venenatis nibh augue, sed eleifend justo tristique eu</p>
+						<div class="intro_title"><?php echo $slogan; ?></div>
+						<p class="intro_text"><?php echo ($deskripsiTentang); ?></p>
 						<div class="button intro_button"><div class="button_bcg"></div><a href="#">explore now<span></span><span></span><span></span></a></div>
 					</div>
 				</div>
@@ -203,11 +211,11 @@ function limit_words($string, $word_limit)
 					<div class="section_title">years statistics</div>
 				</div>
 			</div>
-			<div class="row">
+			<!--<div class="row">
 				<div class="col-lg-10 offset-lg-1 text-center">
 					<p class="stats_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus quis vulputate eros, iaculis consequat nisl. Nunc et suscipit urna. Integer elementum orci eu vehicula pretium. Donec bibendum tristique condimentum. Aenean in lacus ligula. </p>
 				</div>
-			</div>
+			</div>-->
 			<div class="row">
 				<div class="col">
 					<div class="stats_years">
@@ -307,7 +315,7 @@ function limit_words($string, $word_limit)
 							</div>
 						</div>
 
-						<!-- Stats Item -->
+						<!-- Stats Item 
 						<div class="stats_item d-flex flex-md-row flex-column clearfix">
 							<div class="stats_last order-md-1 order-3">
 								<div class="stats_last_icon d-flex flex-column align-items-center justify-content-end">
@@ -334,7 +342,7 @@ function limit_words($string, $word_limit)
 									<div class="stats_type">More Items</div>
 								</div>
 							</div>
-						</div>
+						</div> -->
 
 					</div>
 				</div>
@@ -342,7 +350,7 @@ function limit_words($string, $word_limit)
 		</div>
 	</div>
 
-	<!-- Add -->
+	<!-- Add 
 
 	<div class="add">
 		<div class="container">
@@ -359,7 +367,7 @@ function limit_words($string, $word_limit)
 				</div>
 			</div>
 		</div>
-	</div>
+	</div> -->
 
 	<!-- Milestones -->
 
