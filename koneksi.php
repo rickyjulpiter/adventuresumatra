@@ -1,9 +1,9 @@
 <?php
 
-// $svr_name = "localhost";
-// $user = "root";
-// $password = "";
-// $dbname = "ravelinotravel";
+ // $svr_name = "localhost";
+ // $user = "root";
+ // $password = "";
+ // $dbname = "ravelinotravel";
 
 
 $svr_name = "localhost";
