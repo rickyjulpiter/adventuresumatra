@@ -1,8 +1,12 @@
-<?php include 'koneksi.php'; ?>
+<?php include 'koneksi.php'; 
+$queryTentang = mysqli_query($koneksi, "SELECT * FROM tentang WHERE id = 1") or die(mysqli_error());
+$tentang = mysqli_fetch_assoc($queryTentang);
+$namaTentang = $tentang['nama'];
+$logo = $tentang['logo'];?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Contact</title>
+<title><?php echo $namaTentang ?></title>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="description" content="Travelix Project">
@@ -50,12 +54,12 @@
 
 		<!-- Main Navigation -->
 
-		<nav class="main_nav" style="background: rgba(110, 177, 12, 0.8);">
+		<nav class="main_nav" style="background: #b0c321;">
 			<div class="container">
 				<div class="row">
 					<div class="col main_nav_col d-flex flex-row align-items-center justify-content-start">
 						<div class="logo_container">
-							<div class="logo"><a href="#"><img src="images/logo2.png" alt=""></a></div>
+							<div class="logo"><a href=""><img src="<?php echo $logo; ?>" alt="" style="max-width: 263px;"></a></div>
 						</div>
 						<div class="main_nav_container ml-auto">
 							<ul class="main_nav_list" id="Mennu">
@@ -219,7 +223,7 @@
                                     <label style="color: white;background-color: grey;font-weight: 20px;margin-right: 20px; padding: 10px"><?php echo $captchaCode; ?></label>
                                     <input name="captcha" placeholder="Fill Captcha Here" required style="border:1px solid grey;"></input>
                                 </div>
-                                <div class="col-xs-12">
+                                <div class="col-xs-12" style="margin-bottom: 40px;">
                                     <input type="hidden" name="verif" value="<?php echo ($captchaCode) ?>">
                                     <div class="comment-btn">
                                         <input type="submit" class="form_submit_button button" id="submit" value="Send Message">
@@ -310,11 +314,15 @@
 	<div class="copyright">
 		<div class="container">
 			<div class="row">
-				<div class="col-lg-3 order-lg-1 order-2  ">
+				<div class="col-lg-12 order-lg-1 order-2  ">
 					<div class="copyright_content d-flex flex-row align-items-center">
-						<div><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | Tour travel by by <a href="https://sistempintar.com" target="_blank">Sistem Pintar</a>
-<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></div>
+						<div style="color:white">
+								<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+								Copyright &copy;<script>
+									document.write(new Date().getFullYear());
+								</script> All rights reserved | Tour travel by by <a href="https://sistempintar.com" target="_blank" style="color:white;">Sistem Pintar</a>
+								<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+						</div>
 					</div>
 				</div>
 				<!--<div class="col-lg-9 order-lg-2 order-1">

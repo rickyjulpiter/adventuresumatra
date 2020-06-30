@@ -3,9 +3,17 @@
 $namaWisata = $_GET['destination'];
 
 ?>
+<?php
+	$queryTentang = mysqli_query($koneksi, "SELECT * FROM tentang WHERE id = 1") or die(mysqli_error());
+	$tentang = mysqli_fetch_assoc($queryTentang);
+	$whatsapp = $tentang['whatsapp'];
+	$namaTentang = $tentang['nama'];
+	$logoTentang = $tentang['logo'];
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<title><?php echo $namaTentang ?></title>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="description" content="Adventure Sumatra">
@@ -73,12 +81,12 @@ $namaWisata = $_GET['destination'];
 
 		<!-- Main Navigation -->
 
-		<nav class="main_nav" style="background: rgba(110, 177, 12, 0.8);">
+		<nav class="main_nav" style="background: #b0c321;">
 			<div class="container">
 				<div class="row">
 					<div class="col main_nav_col d-flex flex-row align-items-center justify-content-start">
 						<div class="logo_container">
-							<div class="logo"><a href="#"><img src="images/logo2.png" alt=""></a></div>
+							<div class="logo"><a href="index.php"><img src="<?php echo $logoTentang; ?>" alt="" style="max-width: 263px;"></a></div>
 						</div>
 						<div class="main_nav_container ml-auto">
 							<ul class="main_nav_list" id="Mennu">
@@ -252,8 +260,9 @@ $namaWisata = $_GET['destination'];
 
                                     <!-- First Slide -->
                                     <?php
-                                    $i = 0;
                                     $query_mysql = mysqli_query($koneksi, "SELECT dag.gambar FROM destinasi_area_gambar AS dag INNER JOIN destinasi_area AS da ON dag.destinasi_area_id = da.id_area WHERE da.nama_area = '$namaWisata' ") or die(mysqli_error());
+                                    $num_rows = mysqli_num_rows($query_mysql);
+                                    $counter = 0;
                                     while ($data = mysqli_fetch_array($query_mysql)) {
                                         $gambar = $data['gambar'];
                                         ?>
@@ -271,7 +280,7 @@ $namaWisata = $_GET['destination'];
 
 
                                         <!-- End of Slide -->
-                                    <?php $i++;
+                                    <?php
                                     } ?>
 										
 
@@ -497,11 +506,15 @@ $namaWisata = $_GET['destination'];
 	<div class="copyright">
 		<div class="container">
 			<div class="row">
-				<div class="col-lg-3 order-lg-1 order-2  ">
+				<div class="col-lg-12 order-lg-1 order-2  ">
 					<div class="copyright_content d-flex flex-row align-items-center">
-						<div><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | Tour travel by by <a href="https://sistempintar.com" target="_blank">Sistem Pintar</a>
-<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></div>
+						<div style="color:white">
+								<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+								Copyright &copy;<script>
+									document.write(new Date().getFullYear());
+								</script> All rights reserved | Tour travel by by <a href="https://sistempintar.com" target="_blank" style="color:white;">Sistem Pintar</a>
+								<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+						</div>
 					</div>
 				</div>
 				<!--<div class="col-lg-9 order-lg-2 order-1">

@@ -4,6 +4,7 @@
 	$tentang = mysqli_fetch_assoc($queryTentang);
 	$whatsapp = $tentang['whatsapp'];
 	$nama = $tentang['nama'];
+	$logo = $tentang['logo'];
 	?>
 <!DOCTYPE html>
 <html lang="en">
@@ -61,7 +62,7 @@ function limit_words($string, $word_limit)
 					<div class="row">
 						<div class="col main_nav_col d-flex flex-row align-items-center justify-content-start">
 							<div class="logo_container">
-								<div class="logo"><a href="#"><img src="images/logo2.png" alt=""></a></div>
+								<div class="logo"><a href=""><img src="<?php echo $logo; ?>" alt="" style="max-width: 263px;"></a></div>
 							</div>
 							<div class="main_nav_container ml-auto">
 								<ul class="main_nav_list" id="Mennu">
