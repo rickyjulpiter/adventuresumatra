@@ -5,45 +5,46 @@ $namaWisata = $_GET['destination'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="description" content="Adventure Sumatra">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" type="text/css" href="styles/bootstrap4/bootstrap.min.css">
-<link href="plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-<link href="plugins/colorbox/colorbox.css" rel="stylesheet" type="text/css">
-<link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/owl.carousel.css">
-<link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
-<link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/animate.css">
-<link rel="stylesheet" type="text/css" href="styles/single_listing_styles.css">
-<link rel="stylesheet" type="text/css" href="styles/single_listing_responsive.css">
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="description" content="Adventure Sumatra">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="styles/bootstrap4/bootstrap.min.css">
+	<link href="plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+	<link href="plugins/colorbox/colorbox.css" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/owl.carousel.css">
+	<link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
+	<link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/animate.css">
+	<link rel="stylesheet" type="text/css" href="styles/single_listing_styles.css">
+	<link rel="stylesheet" type="text/css" href="styles/single_listing_responsive.css">
 </head>
 
 <body>
 	<?php
-    $query_sql = "SELECT * FROM destinasi WHERE nama = '$namaWisata'";
-    $queryDetailDestinasi = mysqli_query($koneksi, $query_sql) or die(mysqli_error());
-    $data = mysqli_fetch_assoc($queryDetailDestinasi);
-    $idDestinasi = $data['id'];
-    $namaDestinasi = $data['nama'];
-    $deskripsi_singkatDestinasi = $data['deskripsi_singkat'];
-    $deskripsiDestinasi = $data['deskripsi'];
-    $gambarDestinasi = $data['gambar'];
+	$query_sql = "SELECT * FROM destinasi WHERE nama = '$namaWisata'";
+	$queryDetailDestinasi = mysqli_query($koneksi, $query_sql) or die(mysqli_error());
+	$data = mysqli_fetch_assoc($queryDetailDestinasi);
+	$idDestinasi = $data['id'];
+	$namaDestinasi = $data['nama'];
+	$deskripsi_singkatDestinasi = $data['deskripsi_singkat'];
+	$deskripsiDestinasi = $data['deskripsi'];
+	$gambarDestinasi = $data['gambar'];
 
-    $query = "SELECT gambar FROM destinasi_gambar WHERE destinasi_id = '$idDestinasi'";
-    $query_mysql = mysqli_query($koneksi, $query) or die(mysqli_error());
-    $data = mysqli_fetch_assoc($query_mysql);
-    $gambarBreadCumb = $data['gambar'];
-    ?>
+	$query = "SELECT gambar FROM destinasi_gambar WHERE destinasi_id = '$idDestinasi'";
+	$query_mysql = mysqli_query($koneksi, $query) or die(mysqli_error());
+	$data = mysqli_fetch_assoc($query_mysql);
+	$gambarBreadCumb = $data['gambar'];
+	?>
 
-<div class="super_container">
-	
-	<!-- Header -->
+	<div class="super_container">
 
-	<header class="header">
+		<!-- Header -->
 
-		<!-- Top Bar 
+		<header class="header">
+
+			<!-- Top Bar 
 
 		<div class="top_bar">
 			<div class="container">
@@ -69,63 +70,63 @@ $namaWisata = $_GET['destination'];
 			</div>		
 		</div> -->
 
-		<!-- Main Navigation -->
+			<!-- Main Navigation -->
 
-		<nav class="main_nav" style="background: rgba(110, 177, 12, 0.8);">
-			<div class="container">
-				<div class="row">
-					<div class="col main_nav_col d-flex flex-row align-items-center justify-content-start">
-						<div class="logo_container">
-							<div class="logo"><a href="#"><img src="images/logo2.png" alt=""></a></div>
-						</div>
-						<div class="main_nav_container ml-auto">
-							<ul class="main_nav_list" id="Mennu">
-								<li class="main_nav_item"><a href="index.php">home</a></li>
-								<li class="main_nav_item"><a href="about.php">about us</a></li>
-								<li class="main_nav_item">
-                                    <a href="destination-area-detaill?destination=Medan" style="font-size: 12px;">Destination <i class="fa fa-angle-down"></i></a>
-                                    <ul>
-                                        <?php
-                                        $query_destinasii = mysqli_query($koneksi, "SELECT * FROM destinasi ORDER BY prioritas ASC") or die(mysqli_error());
-                                        while ($data = mysqli_fetch_array($query_destinasii)) {
-                                            $idDestinasii = $data['id'];
-                                            $namaDestinasii = $data['nama'];
-                                        ?>
-                                            <li>
-                                                <a href="destination-detaill?destination=<?php echo $namaDestinasii; ?>"><?php echo $namaDestinasii; ?> <i class="arrow-indicator fa fa-angle-right"></i></a>
-                                                <ul>
-                                                    <?php
-                                                    $query_area_destinasii = mysqli_query($koneksi, "SELECT * FROM destinasi_area WHERE destinasi_id = '$idDestinasii' ORDER BY prioritas ASC") or die(mysqli_error());
-                                                    while ($area = mysqli_fetch_array($query_area_destinasii)) {
-                                                        $namaDestinasiAreaa = $area['nama_area'];
-                                                    ?>
-                                                        <li><a href="destination-area-detaill?destination=<?php echo $namaDestinasiAreaa; ?>"><?php echo $namaDestinasiAreaa; ?></a></li>
-                                                    <?php } ?>
-                                                </ul>
-                                            </li>
-                                        <?php } ?>
-                                    </ul>
-                                </li>
-								<li class="main_nav_item"><a href="#">tour packages<i class="fa fa-angle-down"></i></a>
-									<ul>
-                                        <?php
-                                        // $query_destinasi = mysqli_query($koneksi, "SELECT DISTINCT(d.id),d.nama FROM paket_wisata_detail AS pwd INNER JOIN destinasi_area AS da ON pwd.destinasi_area_id = da.id_area INNER JOIN destinasi AS d ON d.id = da.destinasi_id ORDER BY d.id ASC") or die(mysqli_error());
-                                        $query_destinasii = mysqli_query($koneksi, "SELECT * FROM destinasi ORDER BY prioritas ASC LIMIT 6") or die(mysqli_error());
-                                        while ($data = mysqli_fetch_array($query_destinasii)) {
-                                            $idDestinasii = $data['id'];
-                                            $namaDestinasii = $data['nama'];
-                                        ?>
-                                            <li>
-                                                <a href="tour-listt?name=<?= $namaDestinasii ?>"><?= $namaDestinasii ?></a>
-                                            </li>
-                                        <?php } ?>
-                                    </ul>
-								</li>
-								<!--<li class="main_nav_item"><a href="blog.html">news</a></li> -->
-								<li class="main_nav_item"><a href="contact.php">contact</a></li>
-							</ul>
-						</div>
-						<!--
+			<nav class="main_nav" style="background: rgba(110, 177, 12, 0.8);">
+				<div class="container">
+					<div class="row">
+						<div class="col main_nav_col d-flex flex-row align-items-center justify-content-start">
+							<div class="logo_container">
+								<div class="logo"><a href="#"><img src="images/logo2.png" alt=""></a></div>
+							</div>
+							<div class="main_nav_container ml-auto">
+								<ul class="main_nav_list" id="Mennu">
+									<li class="main_nav_item"><a href="index.php">home</a></li>
+									<li class="main_nav_item"><a href="about.php">about us</a></li>
+									<li class="main_nav_item">
+										<a href="destination-area-detaill?destination=Medan" style="font-size: 12px;">Destination <i class="fa fa-angle-down"></i></a>
+										<ul>
+											<?php
+											$query_destinasii = mysqli_query($koneksi, "SELECT * FROM destinasi ORDER BY prioritas ASC") or die(mysqli_error());
+											while ($data = mysqli_fetch_array($query_destinasii)) {
+												$idDestinasii = $data['id'];
+												$namaDestinasii = $data['nama'];
+											?>
+												<li>
+													<a href="destination-detaill?destination=<?php echo $namaDestinasii; ?>"><?php echo $namaDestinasii; ?> <i class="arrow-indicator fa fa-angle-right"></i></a>
+													<ul>
+														<?php
+														$query_area_destinasii = mysqli_query($koneksi, "SELECT * FROM destinasi_area WHERE destinasi_id = '$idDestinasii' ORDER BY prioritas ASC") or die(mysqli_error());
+														while ($area = mysqli_fetch_array($query_area_destinasii)) {
+															$namaDestinasiAreaa = $area['nama_area'];
+														?>
+															<li><a href="destination-area-detaill?destination=<?php echo $namaDestinasiAreaa; ?>"><?php echo $namaDestinasiAreaa; ?></a></li>
+														<?php } ?>
+													</ul>
+												</li>
+											<?php } ?>
+										</ul>
+									</li>
+									<li class="main_nav_item"><a href="#">tour packages<i class="fa fa-angle-down"></i></a>
+										<ul>
+											<?php
+											// $query_destinasi = mysqli_query($koneksi, "SELECT DISTINCT(d.id),d.nama FROM paket_wisata_detail AS pwd INNER JOIN destinasi_area AS da ON pwd.destinasi_area_id = da.id_area INNER JOIN destinasi AS d ON d.id = da.destinasi_id ORDER BY d.id ASC") or die(mysqli_error());
+											$query_destinasii = mysqli_query($koneksi, "SELECT * FROM destinasi ORDER BY prioritas ASC LIMIT 6") or die(mysqli_error());
+											while ($data = mysqli_fetch_array($query_destinasii)) {
+												$idDestinasii = $data['id'];
+												$namaDestinasii = $data['nama'];
+											?>
+												<li>
+													<a href="tour-listt?name=<?= $namaDestinasii ?>"><?= $namaDestinasii ?></a>
+												</li>
+											<?php } ?>
+										</ul>
+									</li>
+									<!--<li class="main_nav_item"><a href="blog.html">news</a></li> -->
+									<li class="main_nav_item"><a href="contact.php">contact</a></li>
+								</ul>
+							</div>
+							<!--
 						<div class="content_search ml-lg-0 ml-auto">
 							<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 							width="17px" height="17px" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve">
@@ -154,57 +155,59 @@ $namaWisata = $_GET['destination'];
 							<input type="search" class="search_content_input bez_1">
 						</form> -->
 
-						<!--<div class="hamburger">
+							<!--<div class="hamburger">
 							<i class="fa fa-bars trans_200"></i>
 						</div> -->
+						</div>
 					</div>
 				</div>
-			</div>	
-		</nav>
+			</nav>
 
-	</header>
+		</header>
 
-	<div class="menu trans_500">
-		<div class="menu_content d-flex flex-column align-items-center justify-content-center text-center">
-			<div class="menu_close_container"><div class="menu_close"></div></div>
-			<div class="logo menu_logo"><a href="#"><img src="images/logo.png" alt=""></a></div>
-			<ul>
-				<li class="menu_item"><a href="index.html">home</a></li>
-				<li class="menu_item"><a href="about.html">about us</a></li>
-				<li class="menu_item"><a href="offers.html">offers</a></li>
-				<li class="menu_item"><a href="blog.html">news</a></li>
-				<li class="menu_item"><a href="contact.html">contact</a></li>
-			</ul>
+		<div class="menu trans_500">
+			<div class="menu_content d-flex flex-column align-items-center justify-content-center text-center">
+				<div class="menu_close_container">
+					<div class="menu_close"></div>
+				</div>
+				<div class="logo menu_logo"><a href="#"><img src="images/logo.png" alt=""></a></div>
+				<ul>
+					<li class="menu_item"><a href="index.html">home</a></li>
+					<li class="menu_item"><a href="about.html">about us</a></li>
+					<li class="menu_item"><a href="offers.html">offers</a></li>
+					<li class="menu_item"><a href="blog.html">news</a></li>
+					<li class="menu_item"><a href="contact.html">contact</a></li>
+				</ul>
+			</div>
 		</div>
-	</div>
 
-	<!-- Home -->
+		<!-- Home -->
 
-	<div class="home">
-		<div class="home_background1 parallax-window" data-parallax="scroll" data-image-src="<?= $gambarBreadCumb; ?>"></div>
-		<div class="home_content">
-			<div class="home_title"><?php echo $namaDestinasi; ?></div>
+		<div class="home">
+			<div class="home_background1 parallax-window" data-parallax="scroll" data-image-src="<?= $gambarBreadCumb; ?>"></div>
+			<div class="home_content">
+				<div class="home_title"><?php echo $namaDestinasi; ?></div>
+			</div>
 		</div>
-	</div>
 
-	<!-- Offers -->
+		<!-- Offers -->
 
-	<div class="listing">
+		<div class="listing">
 
-		
 
-		<!-- Single Listing -->
 
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-12">
-					<div class="single_listing">
-						
-						<!-- Hotel Info -->
+			<!-- Single Listing -->
 
-						<div class="hotel_info">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="single_listing">
 
-							<!-- Title
+							<!-- Hotel Info -->
+
+							<div class="hotel_info">
+
+								<!-- Title
 							<div class="hotel_title_container d-flex flex-lg-row flex-column">
 								<div class="hotel_title_content">
 									<h1 class="hotel_title">Grand Hotel Eurostar</h1>
@@ -227,9 +230,9 @@ $namaWisata = $_GET['destination'];
 
 							Listing Image -->
 
-							<div class="hotel_image">
-								<img src="<?= $gambarBreadCumb ?>" alt="">
-								<!--<div class="hotel_review_container d-flex flex-column align-items-center justify-content-center">
+								<div class="hotel_image">
+									<img src="<?= $gambarBreadCumb ?>" alt="">
+									<!--<div class="hotel_review_container d-flex flex-column align-items-center justify-content-center">
 									<div class="hotel_review">
 										<div class="hotel_review_content">
 											<div class="hotel_review_title">very good</div>
@@ -238,35 +241,35 @@ $namaWisata = $_GET['destination'];
 										<div class="hotel_review_rating text-center">8.1</div>
 									</div>
 								</div>-->
-							</div>
+								</div>
 
-							<!-- Hotel Gallery -->
+								<!-- Hotel Gallery -->
 
-							<div class="hotel_gallery">
-								<div class="hotel_slider_container">
-									<div class="owl-carousel owl-theme hotel_slider">
+								<div class="hotel_gallery">
+									<div class="hotel_slider_container">
+										<div class="owl-carousel owl-theme hotel_slider">
 
-										<!-- Hotel Gallery Slider Item -->
+											<!-- Hotel Gallery Slider Item -->
 
-                                    <!-- First Slide -->
-                                    <?php
-                                    $i = 0;
-                                    $query_mysql = mysqli_query($koneksi, "SELECT dg.gambar FROM destinasi_gambar AS dg INNER JOIN destinasi AS d ON dg.destinasi_id = d.id WHERE d.nama = '$namaDestinasi' ") or die(mysqli_error());
-                                    while ($data = mysqli_fetch_array($query_mysql)) {
-                                        $gambar = $data['gambar'];
-                                    ?>
-                                        <div class="owl-item">
-                                        	<a class="colorbox cboxElement" href="<?= $gambar ?>">
-												<img src="<?= $gambar ?>" alt="in_th_030_01">
-											</a>
-										</div>
+											<!-- First Slide -->
+											<?php
+											$i = 0;
+											$query_mysql = mysqli_query($koneksi, "SELECT dg.gambar FROM destinasi_gambar AS dg INNER JOIN destinasi AS d ON dg.destinasi_id = d.id WHERE d.nama = '$namaDestinasi' ") or die(mysqli_error());
+											while ($data = mysqli_fetch_array($query_mysql)) {
+												$gambar = $data['gambar'];
+											?>
+												<div class="owl-item">
+													<a class="colorbox cboxElement" href="<?= $gambar ?>">
+														<img src="<?= $gambar ?>" alt="in_th_030_01">
+													</a>
+												</div>
 
-                                        <!-- End of Slide -->
-                                    <?php $i++;
-                                    } ?>
-										
+												<!-- End of Slide -->
+											<?php $i++;
+											} ?>
 
-										<!-- Hotel Gallery Slider Item 
+
+											<!-- Hotel Gallery Slider Item 
 										<div class="owl-item">
 											<a class="colorbox cboxElement" href="images/listing_5.jpg">
 												<img src="images/listing_thumb_5.jpg" alt="https://unsplash.com/@workweek">
@@ -300,70 +303,68 @@ $namaWisata = $_GET['destination'];
 												<img src="images/listing_thumb_9.jpg" alt="https://unsplash.com/@mindaugas">
 											</a>
 										</div>-->
-									</div>
+										</div>
 
-									<!-- Hotel Slider Nav - Prev -->
-									<div class="hotel_slider_nav hotel_slider_prev">
-										<svg version="1.1" id="Layer_6" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-											width="28px" height="33px" viewBox="0 0 28 33" enable-background="new 0 0 28 33" xml:space="preserve">
-											<defs>
-												<linearGradient id='hotel_grad_prev'>
-													<stop offset='0%' stop-color='#fa9e1b'/>
-													<stop offset='100%' stop-color='#8d4fff'/>
-												</linearGradient>
-											</defs>
-											<path class="nav_path" fill="#F3F6F9" d="M19,0H9C4.029,0,0,4.029,0,9v15c0,4.971,4.029,9,9,9h10c4.97,0,9-4.029,9-9V9C28,4.029,23.97,0,19,0z
+										<!-- Hotel Slider Nav - Prev -->
+										<div class="hotel_slider_nav hotel_slider_prev">
+											<svg version="1.1" id="Layer_6" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="28px" height="33px" viewBox="0 0 28 33" enable-background="new 0 0 28 33" xml:space="preserve">
+												<defs>
+													<linearGradient id='hotel_grad_prev'>
+														<stop offset='0%' stop-color='#fa9e1b' />
+														<stop offset='100%' stop-color='#8d4fff' />
+													</linearGradient>
+												</defs>
+												<path class="nav_path" fill="#F3F6F9" d="M19,0H9C4.029,0,0,4.029,0,9v15c0,4.971,4.029,9,9,9h10c4.97,0,9-4.029,9-9V9C28,4.029,23.97,0,19,0z
 											M26,23.091C26,27.459,22.545,31,18.285,31H9.714C5.454,31,2,27.459,2,23.091V9.909C2,5.541,5.454,2,9.714,2h8.571
-											C22.545,2,26,5.541,26,9.909V23.091z"/>
-											<polygon class="nav_arrow" fill="#F3F6F9" points="15.044,22.222 16.377,20.888 12.374,16.885 16.377,12.882 15.044,11.55 9.708,16.885 11.04,18.219 
-											11.042,18.219 "/>
-										</svg>
-									</div>
-									
-									<!-- Hotel Slider Nav - Next -->
-									<div class="hotel_slider_nav hotel_slider_next">
-										<svg version="1.1" id="Layer_7" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-										width="28px" height="33px" viewBox="0 0 28 33" enable-background="new 0 0 28 33" xml:space="preserve">
-											<defs>
-												<linearGradient id='hotel_grad_next'>
-													<stop offset='0%' stop-color='#fa9e1b'/>
-													<stop offset='100%' stop-color='#8d4fff'/>
-												</linearGradient>
-											</defs>
-										<path class="nav_path" fill="#F3F6F9" d="M19,0H9C4.029,0,0,4.029,0,9v15c0,4.971,4.029,9,9,9h10c4.97,0,9-4.029,9-9V9C28,4.029,23.97,0,19,0z
-										M26,23.091C26,27.459,22.545,31,18.285,31H9.714C5.454,31,2,27.459,2,23.091V9.909C2,5.541,5.454,2,9.714,2h8.571
-										C22.545,2,26,5.541,26,9.909V23.091z"/>
-										<polygon class="nav_arrow" fill="#F3F6F9" points="13.044,11.551 11.71,12.885 15.714,16.888 11.71,20.891 13.044,22.224 18.379,16.888 17.048,15.554 
-										17.046,15.554 "/>
-										</svg>
-									</div>
+											C22.545,2,26,5.541,26,9.909V23.091z" />
+												<polygon class="nav_arrow" fill="#F3F6F9" points="15.044,22.222 16.377,20.888 12.374,16.885 16.377,12.882 15.044,11.55 9.708,16.885 11.04,18.219 
+											11.042,18.219 " />
+											</svg>
+										</div>
 
+										<!-- Hotel Slider Nav - Next -->
+										<div class="hotel_slider_nav hotel_slider_next">
+											<svg version="1.1" id="Layer_7" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="28px" height="33px" viewBox="0 0 28 33" enable-background="new 0 0 28 33" xml:space="preserve">
+												<defs>
+													<linearGradient id='hotel_grad_next'>
+														<stop offset='0%' stop-color='#fa9e1b' />
+														<stop offset='100%' stop-color='#8d4fff' />
+													</linearGradient>
+												</defs>
+												<path class="nav_path" fill="#F3F6F9" d="M19,0H9C4.029,0,0,4.029,0,9v15c0,4.971,4.029,9,9,9h10c4.97,0,9-4.029,9-9V9C28,4.029,23.97,0,19,0z
+										M26,23.091C26,27.459,22.545,31,18.285,31H9.714C5.454,31,2,27.459,2,23.091V9.909C2,5.541,5.454,2,9.714,2h8.571
+										C22.545,2,26,5.541,26,9.909V23.091z" />
+												<polygon class="nav_arrow" fill="#F3F6F9" points="13.044,11.551 11.71,12.885 15.714,16.888 11.71,20.891 13.044,22.224 18.379,16.888 17.048,15.554 
+										17.046,15.554 " />
+											</svg>
+										</div>
+
+									</div>
 								</div>
-							</div>
-							
-							<br>
-							<br>
-							
-							<!-- Tabs 2 -->
-							
-							<!-- Nav tabs -->
-							<ul class="nav nav-tabs" id="myTab" role="tablist">
-								<li class="nav-item">
-								<a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Description</a>
-								</li>
-								<!--<li class="nav-item">
+
+								<br>
+								<br>
+
+								<!-- Tabs 2 -->
+
+								<!-- Nav tabs -->
+								<ul class="nav nav-tabs" id="myTab" role="tablist">
+									<li class="nav-item">
+										<a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Description</a>
+									</li>
+									<!--<li class="nav-item">
 								<a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Reviews</a>
 								</li>-->
-							</ul>
-  
-							<!-- Tab panes -->
-							<div class="tab-content">
-								<div class="tab-pane active" id="home" role="tabpanel" aria-labelledby="home-tab">
-									<div class="hotel_info_text">
-									<p><?php echo ($deskripsiDestinasi); ?></p>
+								</ul>
+
+								<!-- Tab panes -->
+								<div class="tab-content">
+									<div class="tab-pane active" id="home" role="tabpanel" aria-labelledby="home-tab">
+										<div class="hotel_info_text">
+											<p><?php echo ($deskripsiDestinasi); ?></p>
+										</div>
 									</div>
-								</div>
-								<!--
+									<!--
 								<div class="tab-pane" id="profile" role="tabpanel" aria-labelledby="profile-tab">
 									<div class="reviews">
 										<div class="reviews_title">reviews</div>
@@ -420,32 +421,32 @@ $namaWisata = $_GET['destination'];
 										</div>
 									</div>
 								</div> -->
-								<div class="tab-pane" id="messages" role="tabpanel" aria-labelledby="messages-tab">
-									<div class="location_on_map">
-										<div class="location_on_map_title">location on map</div>
-			
-										<!-- Google Map -->
-					
-										<div class="travelix_map">
-											<div id="google_map" class="google_map">
-												<div class="map_container" align="center">
-													<iframe src="https://www.google.com/maps/embed?pb=!1m64!1m12!1m3!1d505205.5458021163!2d115.0101294760185!3d-8.409682413175135!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m49!3e0!4m5!1s0x2dd2441650216933%3A0xdf71da6ddd7bcc1f!2sNgurah%20Rai%20International%20Airport%20(DPS)%2C%20Jalan%20Raya%20Gusti%20Ngurah%20Rai%2C%20Tuban%2C%20Badung%20Regency%2C%20Bali!3m2!1d-8.746717199999999!2d115.166787!4m5!1s0x2dd23d6a8d1ac1cd%3A0x89468df6e4c9d611!2sUbud%20Centre%2C%20Jalan%20Suweta%2C%20Ubud%2C%20Gianyar%2C%20Bali!3m2!1d-8.5064817!2d115.2624187!4m5!1s0x2dd1f45d6c8fe87d%3A0x448d1ad48814ee43!2sBatur%20Mountain%20View%2C%20South%20Batur%2C%20Bangli%20Regency%2C%20Bali!3m2!1d-8.2594514!2d115.3411172!4m5!1s0x2dd21e398e4623fd%3A0x3030bfbca7cbef0!2sBangli%2C%20Bali!3m2!1d-8.2975884!2d115.3548713!4m5!1s0x2dd2092cb3cd7f25%3A0x871e3813fed35ad5!2sCandidasa%20Beach%2C%20Bali!3m2!1d-8.5099736!2d115.5685065!4m5!1s0x2dd19b40a35dbf07%3A0x7500ee0f7e30527c!2sLovina%20Beach%2C%20Bali!3m2!1d-8.161140999999999!2d115.02435659999999!4m5!1s0x2dd186110077a85f%3A0x5030bfbca830680!2sMunduk%2C%20Buleleng%20Regency%2C%20Bali!3m2!1d-8.2666267!2d115.054678!4m5!1s0x2dd2471c804bfd05%3A0xdcc2b5ae63dc9082!2sSeminyak%20Beach%2C%20Bali!3m2!1d-8.691193!2d115.157141!5e0!3m2!1sen!2sid!4v1577716885569!5m2!1sen!2sid" width="900" height="450" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
+									<div class="tab-pane" id="messages" role="tabpanel" aria-labelledby="messages-tab">
+										<div class="location_on_map">
+											<div class="location_on_map_title">location on map</div>
+
+											<!-- Google Map -->
+
+											<div class="travelix_map">
+												<div id="google_map" class="google_map">
+													<div class="map_container" align="center">
+														<iframe src="https://www.google.com/maps/embed?pb=!1m64!1m12!1m3!1d505205.5458021163!2d115.0101294760185!3d-8.409682413175135!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m49!3e0!4m5!1s0x2dd2441650216933%3A0xdf71da6ddd7bcc1f!2sNgurah%20Rai%20International%20Airport%20(DPS)%2C%20Jalan%20Raya%20Gusti%20Ngurah%20Rai%2C%20Tuban%2C%20Badung%20Regency%2C%20Bali!3m2!1d-8.746717199999999!2d115.166787!4m5!1s0x2dd23d6a8d1ac1cd%3A0x89468df6e4c9d611!2sUbud%20Centre%2C%20Jalan%20Suweta%2C%20Ubud%2C%20Gianyar%2C%20Bali!3m2!1d-8.5064817!2d115.2624187!4m5!1s0x2dd1f45d6c8fe87d%3A0x448d1ad48814ee43!2sBatur%20Mountain%20View%2C%20South%20Batur%2C%20Bangli%20Regency%2C%20Bali!3m2!1d-8.2594514!2d115.3411172!4m5!1s0x2dd21e398e4623fd%3A0x3030bfbca7cbef0!2sBangli%2C%20Bali!3m2!1d-8.2975884!2d115.3548713!4m5!1s0x2dd2092cb3cd7f25%3A0x871e3813fed35ad5!2sCandidasa%20Beach%2C%20Bali!3m2!1d-8.5099736!2d115.5685065!4m5!1s0x2dd19b40a35dbf07%3A0x7500ee0f7e30527c!2sLovina%20Beach%2C%20Bali!3m2!1d-8.161140999999999!2d115.02435659999999!4m5!1s0x2dd186110077a85f%3A0x5030bfbca830680!2sMunduk%2C%20Buleleng%20Regency%2C%20Bali!3m2!1d-8.2666267!2d115.054678!4m5!1s0x2dd2471c804bfd05%3A0xdcc2b5ae63dc9082!2sSeminyak%20Beach%2C%20Bali!3m2!1d-8.691193!2d115.157141!5e0!3m2!1sen!2sid!4v1577716885569!5m2!1sen!2sid" width="900" height="450" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
+													</div>
 												</div>
 											</div>
-										</div>
-			
-									</div>
-								</div>
-								<div class="tab-pane" id="settings" role="tabpanel" aria-labelledby="settings-tab">
-									<div class="hotel_info_text">
-										
-											lorem ipsum
-										
-									</div>
-								</div>
-							</div>
 
-							<!-- Hotel Info Text 
+										</div>
+									</div>
+									<div class="tab-pane" id="settings" role="tabpanel" aria-labelledby="settings-tab">
+										<div class="hotel_info_text">
+
+											lorem ipsum
+
+										</div>
+									</div>
+								</div>
+
+								<!-- Hotel Info Text 
 
 							<div class="hotel_info_text">
 								<p>Enjoy a relax pace while discovering the essentials of Bali! During this trip you will visit the must see of Bali such as the UNESCO well-known Jatiluwih rice terraces, the magnificent sunrise from Mount Batur’s view, explore an unspoiled green village in the heart of the island. Keep in mind that if you have your own bucket list and that there is special places you wish to visit, our team can always adapt and customize your trip.</p>
@@ -463,61 +464,65 @@ $namaWisata = $_GET['destination'];
 								</ul>
 							</div> -->
 
+							</div>
+
+
+
+							<!-- Reviews -->
+
+
+							<!-- Location on Map -->
+
+
 						</div>
-						
-						
-
-						<!-- Reviews -->
-						
-
-						<!-- Location on Map -->
-
 
 					</div>
+					<!-- destinasi area -->
+
+					<?php
+					$query_mysql = mysqli_query($koneksi, "SELECT B.id_area, B.nama_area, B.deskripsi_area, B.deskripsi_area_singkat, B.prioritas, C.gambar FROM destinasi A, destinasi_area B, destinasi_area_gambar C WHERE A.id = B.destinasi_id AND B.id_area = C.destinasi_area_id AND A.nama = '$namaWisata' GROUP BY B.nama_area ORDER BY B.prioritas ASC") or die(mysqli_error());
+					while ($data = mysqli_fetch_array($query_mysql)) {
+						$idDestinasi = $data['id_area'];
+						$namaDestinasi = $data['nama_area'];
+						$deskripsiDestinasi = $data['deskripsi_area'];
+						$gambarDestinasi = $data['gambar'];
+					?>
+						<a href="destination-area-detaill?destination=<?php echo $namaDestinasi; ?>">
+							<div class="col-md-4 col-sm-6 col-xs-12">
+								<div class="package-item">
+									<img src="<?php echo $gambarDestinasi ?>" alt="Image" height="200px" width="350px" style="object-fit: cover;">
+									<div class="package-content" style="padding:10px;height:120px;">
+										<h2 style="text-align: center;"><a href="destination-area-detaill?destination=<?php echo $namaDestinasi; ?>" style="font-size:20px;color: green; text-align: center;"><?php echo $namaDestinasi ?></a></h2>
+									</div>
+								</div>
+							</div>
+						</a>
+					<?php } ?>
 
 				</div>
-				<!-- destinasi area -->
-                        
-                            <?php
-                            $query_mysql = mysqli_query($koneksi, "SELECT B.id_area, B.nama_area, B.deskripsi_area, B.deskripsi_area_singkat, B.prioritas, C.gambar FROM destinasi A, destinasi_area B, destinasi_area_gambar C WHERE A.id = B.destinasi_id AND B.id_area = C.destinasi_area_id AND A.nama = '$namaWisata' GROUP BY B.nama_area ORDER BY B.prioritas ASC") or die(mysqli_error());
-                            while ($data = mysqli_fetch_array($query_mysql)) {
-                                $idDestinasi = $data['id_area'];
-                                $namaDestinasi = $data['nama_area'];
-                                $deskripsiDestinasi = $data['deskripsi_area'];
-                                $gambarDestinasi = $data['gambar'];
-                            ?>
-                                <a href="destination-area-detaill?destination=<?php echo $namaDestinasi; ?>">
-                                    <div class="col-md-4 col-sm-6 col-xs-12">
-                                        <div class="package-item">
-                                            <img src="<?php echo $gambarDestinasi ?>" alt="Image" height="200px" width="350px" style="object-fit: cover;">
-                                            <div class="package-content" style="padding:10px;height:120px;">
-                                                <h2 style="text-align: center;"><a href="destination-area-detaill?destination=<?php echo $namaDestinasi; ?>" style="font-size:20px;color: green; text-align: center;"><?php echo $namaDestinasi ?></a></h2>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                            <?php } ?>
-                       
 			</div>
-		</div>		
-	</div>
+		</div>
 
-	<!-- Footer -->
+		<!-- Footer -->
 
-	
 
-	<!-- Copyright -->
-	<div class="copyright">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-3 order-lg-1 order-2  ">
-					<div class="copyright_content d-flex flex-row align-items-center">
-						<div><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | Tour travel by by <a href="https://sistempintar.com" target="_blank">Sistem Pintar</a>
-<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></div>
+
+		<!-- Copyright -->
+		<div class="copyright">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-3 order-lg-1 order-2  ">
+						<div class="copyright_content d-flex flex-row align-items-center">
+							<div>
+								<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+								Copyright &copy;<script>
+									document.write(new Date().getFullYear());
+								</script> All rights reserved | Tour travel by by <a href="https://sistempintar.com" target="_blank">Sistem Pintar</a>
+								<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+							</div>
+						</div>
 					</div>
-				</div>
-				<!--<div class="col-lg-9 order-lg-2 order-1">
+					<!--<div class="col-lg-9 order-lg-2 order-1">
 					<div class="footer_nav_container d-flex flex-row align-items-center justify-content-lg-end">
 						<div class="footer_nav">
 							<ul class="footer_nav_list">
@@ -530,23 +535,23 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 						</div>
 					</div>
 				</div>-->
+				</div>
 			</div>
 		</div>
+
+
 	</div>
 
-
-</div>
-
-<script src="js/jquery-3.2.1.min.js"></script>
-<script src="styles/bootstrap4/popper.js"></script>
-<script src="styles/bootstrap4/bootstrap.min.js"></script>
-<script src="styles/bootstrap4/bootstrap-tab.js"></script>
-<script src="plugins/easing/easing.js"></script>
-<script src="plugins/parallax-js-master/parallax.min.js"></script>
-<script src="plugins/colorbox/jquery.colorbox-min.js"></script>
-<script src="plugins/OwlCarousel2-2.2.1/owl.carousel.js"></script>
-<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyCIwF204lFZg1y4kPSIhKaHEXMLYxxuMhA"></script>
-<script src="js/single_listing_custom.js"></script>
+	<script src="js/jquery-3.2.1.min.js"></script>
+	<script src="styles/bootstrap4/popper.js"></script>
+	<script src="styles/bootstrap4/bootstrap.min.js"></script>
+	<script src="styles/bootstrap4/bootstrap-tab.js"></script>
+	<script src="plugins/easing/easing.js"></script>
+	<script src="plugins/parallax-js-master/parallax.min.js"></script>
+	<script src="plugins/colorbox/jquery.colorbox-min.js"></script>
+	<script src="plugins/OwlCarousel2-2.2.1/owl.carousel.js"></script>
+	<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyCIwF204lFZg1y4kPSIhKaHEXMLYxxuMhA"></script>
+	<script src="js/single_listing_custom.js"></script>
 
 </body>
 

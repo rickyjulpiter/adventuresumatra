@@ -66,7 +66,7 @@ $namaWisata = $_GET['destination'];
                                     $query_mysql = mysqli_query($koneksi, "SELECT dag.gambar FROM destinasi_area_gambar AS dag INNER JOIN destinasi_area AS da ON dag.destinasi_area_id = da.id_area WHERE da.nama_area = '$namaWisata' ") or die(mysqli_error());
                                     while ($data = mysqli_fetch_array($query_mysql)) {
                                         $gambar = $data['gambar'];
-                                        ?>
+                                    ?>
                                         <li data-target="#in_th_030" data-slide-to="<?= $i ?>" class="<?php if ($i == 1) echo 'active' ?>">
                                             <!-- 1st Indicator Image -->
                                             <img src="<?= $gambar ?>" alt="in_th_030_01_sm" />
@@ -83,7 +83,7 @@ $namaWisata = $_GET['destination'];
                                     $query_mysql = mysqli_query($koneksi, "SELECT dag.gambar FROM destinasi_area_gambar AS dag INNER JOIN destinasi_area AS da ON dag.destinasi_area_id = da.id_area WHERE da.nama_area = '$namaWisata' ") or die(mysqli_error());
                                     while ($data = mysqli_fetch_array($query_mysql)) {
                                         $gambar = $data['gambar'];
-                                        ?>
+                                    ?>
                                         <div class="item <?php if ($i == 0) echo "active" ?>">
                                             <!-- Slide Background -->
                                             <img src="<?= $gambar ?>" alt="in_th_030_01" />
@@ -114,7 +114,7 @@ $namaWisata = $_GET['destination'];
                                     $namaTour = $data['nama'];
                                     $deskripsiTour = $data['deskripsi'];
                                     $gambarTour = $data['gambar'];
-                                    ?>
+                                ?>
                                     <div class="sidebar-package">
                                         <div class="sidebar-package-image">
                                             <img src="<?php echo $gambarTour; ?>" alt="Images" style="height:200px;background-size: cover;">
@@ -152,7 +152,7 @@ $namaWisata = $_GET['destination'];
     </section>
 
     <!-- Footer -->
-    
+
     <!-- Footer Ends -->
 
     <!-- Back to top start -->

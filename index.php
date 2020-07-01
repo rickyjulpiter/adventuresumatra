@@ -1,11 +1,11 @@
 <?php include 'koneksi.php'; ?>
 <?php
-	$queryTentang = mysqli_query($koneksi, "SELECT * FROM tentang WHERE id = 1") or die(mysqli_error());
-	$tentang = mysqli_fetch_assoc($queryTentang);
-	$whatsapp = $tentang['whatsapp'];
-	$nama = $tentang['nama'];
-	$logo = $tentang['logo'];
-	?>
+$queryTentang = mysqli_query($koneksi, "SELECT * FROM tentang WHERE id = 1") or die(mysqli_error());
+$tentang = mysqli_fetch_assoc($queryTentang);
+$whatsapp = $tentang['whatsapp'];
+$nama = $tentang['nama'];
+$logo = $tentang['logo'];
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -43,7 +43,7 @@ function limit_words($string, $word_limit)
 
 <body>
 
-	
+
 	<a href="https://wa.me/<?= $whatsapp ?>" class="float" target="_blank">
 		<i class="fa fa-whatsapp my-float"></i> Contact Us
 	</a>
@@ -144,36 +144,35 @@ function limit_words($string, $word_limit)
 
 				<div class="owl-carousel owl-theme home_slider">
 					<?php
-                $queryy_mysql = mysqli_query($koneksi,"SELECT * FROM (SELECT DISTINCT(pw.id),pw.nama AS nama,pw.deskripsi AS deskripsi,pwg.gambar FROM paket_wisata AS pw INNER JOIN paket_wisata_gambar AS pwg ON pw.id = pwg.paket_wisata_id) AS tabel GROUP BY id")or die(mysqli_error());
-                $noo = 0;
-                while($dataa = mysqli_fetch_array($queryy_mysql)){
-                    $iddDestinasi = $dataa['id'];
-                    $namaaDestinasi = $dataa['nama'];
-                    $deskripsiiDestinasi = $dataa['deskripsi'];
-                    $gambarrDestiansi = $dataa['gambar'];
-                    $noo++;
-                    if ($noo == 1) {
-                        $statuss = "active";
-                    }
-                    else {
-                        $statuss = "";
-                    }
-                	?>
-					<!-- Slider Item -->
-					<div class="owl-item home_slider_item">
-						<!-- Image by https://unsplash.com/@anikindimitry -->
-						<div class="home_slider_background" style="background-image:url(<?= $gambarrDestiansi ?>)"></div>
+					$queryy_mysql = mysqli_query($koneksi, "SELECT * FROM (SELECT DISTINCT(pw.id),pw.nama AS nama,pw.deskripsi AS deskripsi,pwg.gambar FROM paket_wisata AS pw INNER JOIN paket_wisata_gambar AS pwg ON pw.id = pwg.paket_wisata_id) AS tabel GROUP BY id") or die(mysqli_error());
+					$noo = 0;
+					while ($dataa = mysqli_fetch_array($queryy_mysql)) {
+						$iddDestinasi = $dataa['id'];
+						$namaaDestinasi = $dataa['nama'];
+						$deskripsiiDestinasi = $dataa['deskripsi'];
+						$gambarrDestiansi = $dataa['gambar'];
+						$noo++;
+						if ($noo == 1) {
+							$statuss = "active";
+						} else {
+							$statuss = "";
+						}
+					?>
+						<!-- Slider Item -->
+						<div class="owl-item home_slider_item">
+							<!-- Image by https://unsplash.com/@anikindimitry -->
+							<div class="home_slider_background" style="background-image:url(<?= $gambarrDestiansi ?>)"></div>
 
-						<div class="home_slider_content text-center">
-							<div class="home_slider_content_inner" data-animation-in="flipInX" data-animation-out="animate-out fadeOut">
-								<h1><?= strip_tags($namaaDestinasi); ?></h1>
-								<!--<h1>bali</h1>-->
-								<div class="button home_slider_button">
-									<div class="button_bcg"></div><a href="tourr?tourID=<?= $iddDestinasi; ?>">explore now<span></span><span></span><span></span></a>
+							<div class="home_slider_content text-center">
+								<div class="home_slider_content_inner" data-animation-in="flipInX" data-animation-out="animate-out fadeOut">
+									<h1><?= strip_tags($namaaDestinasi); ?></h1>
+									<!--<h1>bali</h1>-->
+									<div class="button home_slider_button">
+										<div class="button_bcg"></div><a href="tourr?tourID=<?= $iddDestinasi; ?>">explore now<span></span><span></span><span></span></a>
+									</div>
 								</div>
 							</div>
 						</div>
-					</div>
 					<?php } ?>
 					<!-- Slider Item 
 					<div class="owl-item home_slider_item">
@@ -280,34 +279,34 @@ function limit_words($string, $word_limit)
 				<br>
 				<div class="l u-ml0">
 					<?php
-                	$queryy_mysqll = mysqli_query($koneksi, "SELECT A.id, A.nama,A.deskripsi, A.deskripsi_singkat, A.prioritas, B.gambar FROM destinasi A, destinasi_gambar B WHERE A.id = B.destinasi_id ORDER BY A.prioritas ASC LIMIT 6") or die(mysqli_error());
-                	while ($dataaaa = mysqli_fetch_array($queryy_mysqll)) {
-                    $iddDestinasii = $dataaaa['id'];
-                    $namaaDestinasii = $dataaaa['nama'];
-                    $deskripsiiDestinasii = $dataaaa['deskripsi'];
-                    $gambarrDestinasii = $dataaaa['gambar'];
-                	?>
-					<div class="u-1/1 u-1/2-lap u-1/3-desk" style="padding: 5px;">
-						<div class="category-card " style="background-image:url(images/frametd.jpeg);border: 10px solid transparent;">
-							<div class="category-card__img">
-								<div class="color-overlay color-overlay--rev color-overlay--brand color-overlay--parent">
-									<img src="<?php echo $gambarrDestinasii ?>" title="Lake Toba" alt="Toba 1">
-								</div>
-							</div>
-							<a href="#" class="plain">
-							</a>
-							<div class="category-card__body"><a href="destination-detaill?destination=<?php echo $namaaDestinasii; ?>" class="plain">
-									<div class="intro_center">
-										<h1><?php echo $namaaDestinasii ?></h1>
+					$queryy_mysqll = mysqli_query($koneksi, "SELECT A.id, A.nama,A.deskripsi, A.deskripsi_singkat, A.prioritas, B.gambar FROM destinasi A, destinasi_gambar B WHERE A.id = B.destinasi_id ORDER BY A.prioritas ASC LIMIT 6") or die(mysqli_error());
+					while ($dataaaa = mysqli_fetch_array($queryy_mysqll)) {
+						$iddDestinasii = $dataaaa['id'];
+						$namaaDestinasii = $dataaaa['nama'];
+						$deskripsiiDestinasii = $dataaaa['deskripsi'];
+						$gambarrDestinasii = $dataaaa['gambar'];
+					?>
+						<div class="u-1/1 u-1/2-lap u-1/3-desk" style="padding: 5px;">
+							<div class="category-card " style="background-image:url(images/frametd.jpeg);border: 10px solid transparent;">
+								<div class="category-card__img">
+									<div class="color-overlay color-overlay--rev color-overlay--brand color-overlay--parent">
+										<img src="<?php echo $gambarrDestinasii ?>" title="Lake Toba" alt="Toba 1">
 									</div>
-								</a>
-								<div class="category-card__extra"><a href="#" class="plain">
-									</a>
 								</div>
-							</div>
+								<a href="#" class="plain">
+								</a>
+								<div class="category-card__body"><a href="destination-detaill?destination=<?php echo $namaaDestinasii; ?>" class="plain">
+										<div class="intro_center">
+											<h1><?php echo $namaaDestinasii ?></h1>
+										</div>
+									</a>
+									<div class="category-card__extra"><a href="#" class="plain">
+										</a>
+									</div>
+								</div>
 
+							</div>
 						</div>
-					</div>
 					<?php } ?>
 					<!--
 					<div class="u-1/1 u-1/2-lap u-1/3-desk" style="padding: 5px;">
@@ -540,35 +539,35 @@ function limit_words($string, $word_limit)
 				</div>
 				<div class="row offers_items">
 					<?php
-                $query_mysqll = mysqli_query($koneksi, "SELECT * FROM (SELECT DISTINCT(pw.id),pw.nama AS nama,pw.deskripsi AS deskripsi,pwg.gambar FROM paket_wisata AS pw INNER JOIN paket_wisata_gambar AS pwg ON pw.id = pwg.paket_wisata_id) AS tabel GROUP BY id LIMIT 4") or die(mysqli_error());
-                while ($dataaa = mysqli_fetch_array($query_mysqll)) {
-                    $namaTourr = $dataaa['nama'];
-                    $deskripsiTourr = $dataaa['deskripsi'];
-                    $gambarTourr = $dataaa['gambar'];
-                	?>
-					<!-- Offers Item -->
-					<div class="col-lg-6 offers_col">
-						<div class="offers_item">
-							<div class="row">
-								<div class="col-lg-6">
-									<div class="offers_image_container">
-										<!-- Image by https://unsplash.com/@kensuarez -->
-										<div class="offers_image_background" style="background-image:url(<?= $gambarTourr ?>)"></div>
-										<!--<div class="offer_name"><a href="#"></a>grand castle</a></div>-->
+					$query_mysqll = mysqli_query($koneksi, "SELECT * FROM (SELECT DISTINCT(pw.id),pw.nama AS nama,pw.deskripsi AS deskripsi,pwg.gambar FROM paket_wisata AS pw INNER JOIN paket_wisata_gambar AS pwg ON pw.id = pwg.paket_wisata_id) AS tabel GROUP BY id LIMIT 4") or die(mysqli_error());
+					while ($dataaa = mysqli_fetch_array($query_mysqll)) {
+						$namaTourr = $dataaa['nama'];
+						$deskripsiTourr = $dataaa['deskripsi'];
+						$gambarTourr = $dataaa['gambar'];
+					?>
+						<!-- Offers Item -->
+						<div class="col-lg-6 offers_col">
+							<div class="offers_item">
+								<div class="row">
+									<div class="col-lg-6">
+										<div class="offers_image_container">
+											<!-- Image by https://unsplash.com/@kensuarez -->
+											<div class="offers_image_background" style="background-image:url(<?= $gambarTourr ?>)"></div>
+											<!--<div class="offer_name"><a href="#"></a>grand castle</a></div>-->
+										</div>
 									</div>
-								</div>
-								<div class="col-lg-6">
-									<div class="offers_content">
-										<div class="offers_price"><?php echo $namaTourr; ?></div>
-										<!--<div class="rating_r rating_r_4 offers_rating">
+									<div class="col-lg-6">
+										<div class="offers_content">
+											<div class="offers_price"><?php echo $namaTourr; ?></div>
+											<!--<div class="rating_r rating_r_4 offers_rating">
 										<i></i>
 										<i></i>
 										<i></i>
 										<i></i>
 										<i></i>
 									</div>-->
-										<p class="offers_text"><?php echo limit_words(strip_tags($deskripsiTourr), 20) . "..."; ?></p>
-										<!--<div class="offers_icons">
+											<p class="offers_text"><?php echo limit_words(strip_tags($deskripsiTourr), 20) . "..."; ?></p>
+											<!--<div class="offers_icons">
 										<ul class="offers_icons_list">
 											<li class="offers_icons_item"><img src="images/post.png" alt=""></li>
 											<li class="offers_icons_item"><img src="images/compass.png" alt=""></li>
@@ -576,12 +575,12 @@ function limit_words($string, $word_limit)
 											<li class="offers_icons_item"><img src="images/sailboat.png" alt=""></li>
 										</ul>
 									</div>-->
-										<div class="offers_link"><a href="tourr?tourID=<?php echo $dataaa['id']; ?>">read more</a></div>
+											<div class="offers_link"><a href="tourr?tourID=<?php echo $dataaa['id']; ?>">read more</a></div>
+										</div>
 									</div>
 								</div>
 							</div>
 						</div>
-					</div>
 					<?php } ?>
 					<!-- Offers Item 
 					<div class="col-lg-6 offers_col">

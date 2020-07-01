@@ -49,7 +49,7 @@
                             $namaDestinasi = $data['nama_area'];
                             $deskripsiDestinasi = $data['deskripsi_area'];
                             $gambarDestinasi = $data['gambar_area'];
-                            ?>
+                        ?>
                             <div class="destination-fw-item">
                                 <div class="row">
                                     <div class="col-md-3">

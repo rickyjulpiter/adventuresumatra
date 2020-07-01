@@ -72,7 +72,7 @@ if (isset($_GET['tourName'])) {
                                     $query_mysql = mysqli_query($koneksi, "SELECT gambar FROM paket_wisata_gambar WHERE paket_wisata_id = '$idTourPackages' ") or die(mysqli_error());
                                     while ($data = mysqli_fetch_array($query_mysql)) {
                                         $gambar = $data['gambar'];
-                                        ?>
+                                    ?>
                                         <li data-target="#in_th_030" data-slide-to="<?= $i ?>" class="<?php if ($i == 0) echo 'active' ?>">
                                             <!-- 1st Indicator Image -->
                                             <img src="<?= $gambar ?>" alt="in_th_030_01_sm" />
@@ -89,7 +89,7 @@ if (isset($_GET['tourName'])) {
                                     $query_mysql = mysqli_query($koneksi, "SELECT gambar FROM paket_wisata_gambar WHERE paket_wisata_id = '$idTourPackages' ") or die(mysqli_error());
                                     while ($data = mysqli_fetch_array($query_mysql)) {
                                         $gambar = $data['gambar'];
-                                        ?>
+                                    ?>
                                         <div class="item <?php if ($i == 0) echo "active" ?>">
                                             <!-- Slide Background -->
                                             <img src="<?= $gambar ?>" alt="in_th_030_01" />
@@ -140,7 +140,7 @@ if (isset($_GET['tourName'])) {
                                     $namaTour = $data['nama'];
                                     $deskripsiTour = $data['deskripsi'];
                                     $gambarTour = $data['gambar'];
-                                    ?>
+                                ?>
                                     <div class="sidebar-package">
                                         <div class="sidebar-package-image">
                                             <img src="<?php echo $gambarTour; ?>" alt="Images" style="height:200px;">

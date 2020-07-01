@@ -10,37 +10,38 @@ $slogan = $tentang['slogan'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<title><?php echo $namaTentang ?></title>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="description" content="Travelix Project">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" type="text/css" href="styles/bootstrap4/bootstrap.min.css">
-<link href="plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-<link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/owl.carousel.css">
-<link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
-<link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/animate.css">
-<link rel="stylesheet" type="text/css" href="styles/about_styles.css">
-<link rel="stylesheet" type="text/css" href="styles/about_responsive.css">
+	<title><?php echo $namaTentang ?></title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="description" content="Travelix Project">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="styles/bootstrap4/bootstrap.min.css">
+	<link href="plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/owl.carousel.css">
+	<link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
+	<link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/animate.css">
+	<link rel="stylesheet" type="text/css" href="styles/about_styles.css">
+	<link rel="stylesheet" type="text/css" href="styles/about_responsive.css">
 </head>
 
 <body>
-<?php
-function limit_words($string, $word_limit)
-{
-    $words = explode(" ", $string);
-    return implode(" ", array_splice($words, 0, $word_limit));
-}
-?>
+	<?php
+	function limit_words($string, $word_limit)
+	{
+		$words = explode(" ", $string);
+		return implode(" ", array_splice($words, 0, $word_limit));
+	}
+	?>
 
-<div class="super_container">
-	
-	<!-- Header -->
+	<div class="super_container">
 
-	<header class="header">
+		<!-- Header -->
 
-		<!-- Top Bar 
+		<header class="header">
+
+			<!-- Top Bar 
 
 		<div class="top_bar">
 			<div class="container">
@@ -66,63 +67,63 @@ function limit_words($string, $word_limit)
 			</div>		
 		</div> -->
 
-		<!-- Main Navigation -->
+			<!-- Main Navigation -->
 
-		<nav class="main_nav" style="background: #b0c321;">
-			<div class="container">
-				<div class="row">
-					<div class="col main_nav_col d-flex flex-row align-items-center justify-content-start">
-						<div class="logo_container">
-							<div class="logo"><a href="index.php"><img src="<?php echo $logo; ?>" alt="" style="max-width: 263px;"></a></div>
-						</div>
-						<div class="main_nav_container ml-auto">
-							<ul class="main_nav_list" id="Mennu">
-								<li class="main_nav_item"><a href="index.php">home</a></li>
-								<li class="main_nav_item"><a href="#">about us</a></li>
-								<li class="main_nav_item">
-                                    <a href="destination-area-detaill?destination=Medan" style="font-size: 12px;">Destination <i class="fa fa-angle-down"></i></a>
-                                    <ul>
-                                        <?php
-                                        $query_destinasi = mysqli_query($koneksi, "SELECT * FROM destinasi ORDER BY prioritas ASC") or die(mysqli_error());
-                                        while ($data = mysqli_fetch_array($query_destinasi)) {
-                                            $idDestinasi = $data['id'];
-                                            $namaDestinasi = $data['nama'];
-                                        ?>
-                                            <li>
-                                                <a href="destination-detaill?destination=<?php echo $namaDestinasi; ?>"><?php echo $namaDestinasi; ?> <i class="arrow-indicator fa fa-angle-right"></i></a>
-                                                <ul>
-                                                    <?php
-                                                    $query_area_destinasi = mysqli_query($koneksi, "SELECT * FROM destinasi_area WHERE destinasi_id = '$idDestinasi' ORDER BY prioritas ASC") or die(mysqli_error());
-                                                    while ($area = mysqli_fetch_array($query_area_destinasi)) {
-                                                        $namaDestinasiArea = $area['nama_area'];
-                                                    ?>
-                                                        <li><a href="destination-area-detaill?destination=<?php echo $namaDestinasiArea; ?>"><?php echo $namaDestinasiArea; ?></a></li>
-                                                    <?php } ?>
-                                                </ul>
-                                            </li>
-                                        <?php } ?>
-                                    </ul>
-                                </li>
-								<li class="main_nav_item"><a href="#">tour packages<i class="fa fa-angle-down"></i></a>
-									<ul>
-                                        <?php
-                                        // $query_destinasi = mysqli_query($koneksi, "SELECT DISTINCT(d.id),d.nama FROM paket_wisata_detail AS pwd INNER JOIN destinasi_area AS da ON pwd.destinasi_area_id = da.id_area INNER JOIN destinasi AS d ON d.id = da.destinasi_id ORDER BY d.id ASC") or die(mysqli_error());
-                                        $query_destinasi = mysqli_query($koneksi, "SELECT * FROM destinasi ORDER BY prioritas ASC LIMIT 6") or die(mysqli_error());
-                                        while ($data = mysqli_fetch_array($query_destinasi)) {
-                                            $idDestinasi = $data['id'];
-                                            $namaDestinasi = $data['nama'];
-                                        ?>
-                                            <li>
-                                                <a href="tour-listt?name=<?= $namaDestinasi ?>"><?= $namaDestinasi ?></a>
-                                            </li>
-                                        <?php } ?>
-                                    </ul>
-								</li>
-								<!--<li class="main_nav_item"><a href="blog.html">news</a></li> -->
-								<li class="main_nav_item"><a href="contact.php">contact</a></li>
-							</ul>
-						</div>
-						<!--
+			<nav class="main_nav" style="background: #b0c321;">
+				<div class="container">
+					<div class="row">
+						<div class="col main_nav_col d-flex flex-row align-items-center justify-content-start">
+							<div class="logo_container">
+								<div class="logo"><a href="index.php"><img src="<?php echo $logo; ?>" alt="" style="max-width: 263px;"></a></div>
+							</div>
+							<div class="main_nav_container ml-auto">
+								<ul class="main_nav_list" id="Mennu">
+									<li class="main_nav_item"><a href="index.php">home</a></li>
+									<li class="main_nav_item"><a href="#">about us</a></li>
+									<li class="main_nav_item">
+										<a href="destination-area-detaill?destination=Medan" style="font-size: 12px;">Destination <i class="fa fa-angle-down"></i></a>
+										<ul>
+											<?php
+											$query_destinasi = mysqli_query($koneksi, "SELECT * FROM destinasi ORDER BY prioritas ASC") or die(mysqli_error());
+											while ($data = mysqli_fetch_array($query_destinasi)) {
+												$idDestinasi = $data['id'];
+												$namaDestinasi = $data['nama'];
+											?>
+												<li>
+													<a href="destination-detaill?destination=<?php echo $namaDestinasi; ?>"><?php echo $namaDestinasi; ?> <i class="arrow-indicator fa fa-angle-right"></i></a>
+													<ul>
+														<?php
+														$query_area_destinasi = mysqli_query($koneksi, "SELECT * FROM destinasi_area WHERE destinasi_id = '$idDestinasi' ORDER BY prioritas ASC") or die(mysqli_error());
+														while ($area = mysqli_fetch_array($query_area_destinasi)) {
+															$namaDestinasiArea = $area['nama_area'];
+														?>
+															<li><a href="destination-area-detaill?destination=<?php echo $namaDestinasiArea; ?>"><?php echo $namaDestinasiArea; ?></a></li>
+														<?php } ?>
+													</ul>
+												</li>
+											<?php } ?>
+										</ul>
+									</li>
+									<li class="main_nav_item"><a href="#">tour packages<i class="fa fa-angle-down"></i></a>
+										<ul>
+											<?php
+											// $query_destinasi = mysqli_query($koneksi, "SELECT DISTINCT(d.id),d.nama FROM paket_wisata_detail AS pwd INNER JOIN destinasi_area AS da ON pwd.destinasi_area_id = da.id_area INNER JOIN destinasi AS d ON d.id = da.destinasi_id ORDER BY d.id ASC") or die(mysqli_error());
+											$query_destinasi = mysqli_query($koneksi, "SELECT * FROM destinasi ORDER BY prioritas ASC LIMIT 6") or die(mysqli_error());
+											while ($data = mysqli_fetch_array($query_destinasi)) {
+												$idDestinasi = $data['id'];
+												$namaDestinasi = $data['nama'];
+											?>
+												<li>
+													<a href="tour-listt?name=<?= $namaDestinasi ?>"><?= $namaDestinasi ?></a>
+												</li>
+											<?php } ?>
+										</ul>
+									</li>
+									<!--<li class="main_nav_item"><a href="blog.html">news</a></li> -->
+									<li class="main_nav_item"><a href="contact.php">contact</a></li>
+								</ul>
+							</div>
+							<!--
 						<div class="content_search ml-lg-0 ml-auto">
 							<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 							width="17px" height="17px" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve">
@@ -151,61 +152,65 @@ function limit_words($string, $word_limit)
 							<input type="search" class="search_content_input bez_1">
 						</form> -->
 
-						<!--<div class="hamburger">
+							<!--<div class="hamburger">
 							<i class="fa fa-bars trans_200"></i>
 						</div> -->
+						</div>
 					</div>
 				</div>
-			</div>	
-		</nav>
+			</nav>
 
-	</header>
+		</header>
 
-	<div class="menu trans_500">
-		<div class="menu_content d-flex flex-column align-items-center justify-content-center text-center">
-			<div class="menu_close_container"><div class="menu_close"></div></div>
-			<div class="logo menu_logo"><a href="#"><img src="images/logo.png" alt=""></a></div>
-			<ul>
-				<li class="menu_item"><a href="index.html">home</a></li>
-				<li class="menu_item"><a href="#">about us</a></li>
-				<li class="menu_item"><a href="offers.html">offers</a></li>
-				<li class="menu_item"><a href="blog.html">news</a></li>
-				<li class="menu_item"><a href="contact.html">contact</a></li>
-			</ul>
-		</div>
-	</div>
-
-	<!-- Home -->
-
-	<div class="home">
-		<div class="home_background parallax-window" data-parallax="scroll" data-image-src="images/about_background.jpg"></div>
-		<div class="home_content">
-			<div class="home_title">about us</div>
-		</div>
-	</div>
-
-	<!-- Intro -->
-
-	<div class="intro">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-7">
-					<div class="intro_image"><img src="<?= $staticImage ?>" alt="" style="padding-bottom: 15px;height:350px;width:650px;object-fit:contain"></div>
+		<div class="menu trans_500">
+			<div class="menu_content d-flex flex-column align-items-center justify-content-center text-center">
+				<div class="menu_close_container">
+					<div class="menu_close"></div>
 				</div>
-				<div class="col-lg-5">
-					<div class="intro_content">
-						<div class="intro_title"><?php echo $slogan; ?></div>
-						<p class="intro_text"><?php echo ($deskripsiTentang); ?></p>
-						<div class="button intro_button"><div class="button_bcg"></div><a href="#">explore now<span></span><span></span><span></span></a></div>
+				<div class="logo menu_logo"><a href="#"><img src="images/logo.png" alt=""></a></div>
+				<ul>
+					<li class="menu_item"><a href="index.html">home</a></li>
+					<li class="menu_item"><a href="#">about us</a></li>
+					<li class="menu_item"><a href="offers.html">offers</a></li>
+					<li class="menu_item"><a href="blog.html">news</a></li>
+					<li class="menu_item"><a href="contact.html">contact</a></li>
+				</ul>
+			</div>
+		</div>
+
+		<!-- Home -->
+
+		<div class="home">
+			<div class="home_background parallax-window" data-parallax="scroll" data-image-src="images/about_background.jpg"></div>
+			<div class="home_content">
+				<div class="home_title">about us</div>
+			</div>
+		</div>
+
+		<!-- Intro -->
+
+		<div class="intro">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-7">
+						<div class="intro_image"><img src="<?= $staticImage ?>" alt="" style="padding-bottom: 15px;height:350px;width:650px;object-fit:contain"></div>
+					</div>
+					<div class="col-lg-5">
+						<div class="intro_content">
+							<div class="intro_title"><?php echo $slogan; ?></div>
+							<p class="intro_text"><?php echo ($deskripsiTentang); ?></p>
+							<!-- <div class="button intro_button">
+								<div class="button_bcg"></div><a href="#">explore now<span></span><span></span><span></span></a>
+							</div> -->
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
 
-	
 
-	<!-- Add 
+
+		<!-- Add 
 
 	<div class="add">
 		<div class="container">
@@ -224,28 +229,28 @@ function limit_words($string, $word_limit)
 		</div>
 	</div> -->
 
-	
 
-	<!-- Footer -->
 
-	
+		<!-- Footer -->
 
-	<!-- Copyright -->
-	<div class="copyright">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-12 order-lg-1 order-2  ">
-					<div class="copyright_content d-flex flex-row align-items-center">
-						<div style="color:white">
+
+
+		<!-- Copyright -->
+		<div class="copyright">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-12 order-lg-1 order-2  ">
+						<div class="copyright_content d-flex flex-row align-items-center">
+							<div style="color:white">
 								<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 								Copyright &copy;<script>
 									document.write(new Date().getFullYear());
 								</script> All rights reserved | Tour travel by by <a href="https://sistempintar.com" target="_blank" style="color:white;">Sistem Pintar</a>
 								<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+							</div>
 						</div>
-					</div>	
-				</div>
-				<!--<div class="col-lg-9 order-lg-2 order-1">
+					</div>
+					<!--<div class="col-lg-9 order-lg-2 order-1">
 					<div class="footer_nav_container d-flex flex-row align-items-center justify-content-lg-end">
 						<div class="footer_nav">
 							<ul class="footer_nav_list">
@@ -258,25 +263,25 @@ function limit_words($string, $word_limit)
 						</div>
 					</div>
 				</div>-->
+				</div>
 			</div>
 		</div>
+
+
 	</div>
 
-
-</div>
-
-<script src="js/jquery-3.2.1.min.js"></script>
-<script src="styles/bootstrap4/popper.js"></script>
-<script src="styles/bootstrap4/bootstrap.min.js"></script>
-<script src="plugins/greensock/TweenMax.min.js"></script>
-<script src="plugins/greensock/TimelineMax.min.js"></script>
-<script src="plugins/scrollmagic/ScrollMagic.min.js"></script>
-<script src="plugins/greensock/animation.gsap.min.js"></script>
-<script src="plugins/greensock/ScrollToPlugin.min.js"></script>
-<script src="plugins/OwlCarousel2-2.2.1/owl.carousel.js"></script>
-<script src="plugins/easing/easing.js"></script>
-<script src="plugins/parallax-js-master/parallax.min.js"></script>
-<script src="js/about_custom.js"></script>
+	<script src="js/jquery-3.2.1.min.js"></script>
+	<script src="styles/bootstrap4/popper.js"></script>
+	<script src="styles/bootstrap4/bootstrap.min.js"></script>
+	<script src="plugins/greensock/TweenMax.min.js"></script>
+	<script src="plugins/greensock/TimelineMax.min.js"></script>
+	<script src="plugins/scrollmagic/ScrollMagic.min.js"></script>
+	<script src="plugins/greensock/animation.gsap.min.js"></script>
+	<script src="plugins/greensock/ScrollToPlugin.min.js"></script>
+	<script src="plugins/OwlCarousel2-2.2.1/owl.carousel.js"></script>
+	<script src="plugins/easing/easing.js"></script>
+	<script src="plugins/parallax-js-master/parallax.min.js"></script>
+	<script src="js/about_custom.js"></script>
 
 </body>
 
