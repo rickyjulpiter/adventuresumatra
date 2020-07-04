@@ -127,6 +127,7 @@ $idList = $data['id'];
 									</li>
 									<!--<li class="main_nav_item"><a href="blog.html">news</a></li> -->
 									<li class="main_nav_item"><a href="contact.php">contact</a></li>
+									<li class="main_nav_item"><a href="request.php">tailor-made tour</a></li>
 								</ul>
 							</div>
 							<!--
