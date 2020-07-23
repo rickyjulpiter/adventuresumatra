@@ -40,6 +40,11 @@ function limit_words($string, $word_limit)
 	return implode(" ", array_splice($words, 0, $word_limit));
 }
 ?>
+<style>
+	.modifLine {
+		line-height: 30px;
+	}
+</style>
 
 <body>
 
@@ -559,7 +564,7 @@ function limit_words($string, $word_limit)
 									</div>
 									<div class="col-lg-6">
 										<div class="offers_content">
-											<div class="offers_price"><?php echo $namaTourr; ?></div>
+											<div class="offers_price modifLine"><?php echo $namaTourr; ?></div>
 											<!--<div class="rating_r rating_r_4 offers_rating">
 										<i></i>
 										<i></i>
@@ -742,15 +747,15 @@ function limit_words($string, $word_limit)
 		</div>
 
 	</div>
-	
+
 	<script>
-	    var owl = $('.owl-carousel');
-        owl.owlCarousel({
-            items:1,
-            loop:true,
-            autoplay:true,
-            autoplayTimeout:5000,
-        });
+		var owl = $('.owl-carousel');
+		owl.owlCarousel({
+			items: 1,
+			loop: true,
+			autoplay: true,
+			autoplayTimeout: 5000,
+		});
 	</script>
 
 </body>

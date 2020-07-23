@@ -362,7 +362,7 @@ if (isset($_GET['tourName'])) {
 										<a class="nav-link" id="messages-tab" data-toggle="tab" href="#messages" role="tab" aria-controls="messages" aria-selected="false">Map</a>
 									</li>
 									<li class="nav-item">
-										<a class="nav-link" id="settings-tab" data-toggle="tab" href="#settings" role="tab" aria-controls="settings" aria-selected="false">Intienary</a>
+										<a class="nav-link" id="settings-tab" data-toggle="tab" href="#settings" role="tab" aria-controls="settings" aria-selected="false">Itinerary</a>
 									</li>
 								</ul>
 
