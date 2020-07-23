@@ -742,6 +742,16 @@ function limit_words($string, $word_limit)
 		</div>
 
 	</div>
+	
+	<script>
+	    var owl = $('.owl-carousel');
+        owl.owlCarousel({
+            items:1,
+            loop:true,
+            autoplay:true,
+            autoplayTimeout:5000,
+        });
+	</script>
 
 </body>
 
