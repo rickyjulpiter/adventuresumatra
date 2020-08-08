@@ -171,7 +171,7 @@ function limit_words($string, $word_limit)
 
 							<div class="home_slider_content text-center">
 								<div class="home_slider_content_inner" data-animation-in="flipInX" data-animation-out="animate-out fadeOut">
-									<h1><?= strip_tags($namaaDestinasi); ?></h1>
+									<h1 style=font-size:45px><?= strip_tags($namaaDestinasi); ?></h1>
 									<!--<h1>bali</h1>-->
 									<div class="button home_slider_button">
 										<div class="button_bcg"></div><a href="tourr?tourID=<?= $iddDestinasi; ?>">explore now<span></span><span></span><span></span></a>
