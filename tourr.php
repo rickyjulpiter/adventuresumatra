@@ -255,19 +255,17 @@ if (isset($_GET['tourName'])) {
 										<div class="owl-carousel owl-theme hotel_slider">
 
 											<!-- Hotel Gallery Slider Item -->
-											<?php
-											$i = 0;
-											$query_mysql = mysqli_query($koneksi, "SELECT gambar FROM paket_wisata_gambar WHERE paket_wisata_id = '$idTourPackages' ") or die(mysqli_error());
+											<?php											$query_mysql = mysqli_query($koneksi, "SELECT gambar FROM paket_wisata_gambar WHERE paket_wisata_id = '$idTourPackages' ") or die(mysqli_error());
 											while ($data = mysqli_fetch_array($query_mysql)) {
 												$gambar = $data['gambar'];
 											?>
 												<div class="owl-item">
-													<a id="climg" class="colorbox cboxElement" href="<?= $gambar ?>" height="500px">
-														<img src="<?= $gambar ?>" alt="in_th_030_01">
+													<a id="climg" class="colorbox cboxElement" href="<?= $gambar ?>" >
+														<img src="<?= $gambar ?>" alt="in_th_030_01" height="200px">
 													</a>
 												</div>
 												<!-- End of Slide -->
-											<?php $i++;
+											<?php 
 											} ?>
 
 
@@ -537,6 +535,14 @@ if (isset($_GET['tourName'])) {
 	<script src="plugins/OwlCarousel2-2.2.1/owl.carousel.js"></script>
 	<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyCIwF204lFZg1y4kPSIhKaHEXMLYxxuMhA"></script>
 	<script src="js/single_listing_custom.js"></script>
+	<script>
+		var owl = $('.owl-carousel');
+        owl.owlCarousel({
+            items:4,
+            loop:false,
+            autoplay:false,
+        });
+	</script>
 
 </body>
 

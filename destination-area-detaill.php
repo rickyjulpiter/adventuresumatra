@@ -259,70 +259,22 @@ $logoTentang = $tentang['logo'];
 								<div class="hotel_gallery">
 									<div class="hotel_slider_container">
 										<div class="owl-carousel owl-theme hotel_slider">
+                                    <?php
+                                    $query_mysql = mysqli_query($koneksi, "SELECT dag.gambar FROM destinasi_area_gambar AS dag INNER JOIN destinasi_area AS da ON dag.destinasi_area_id = da.id_area WHERE da.nama_area = '$namaWisata' ") or die(mysqli_error());
+                                    $num_rows = mysqli_num_rows($query_mysql);
+                                    $item_length = $num_rows;
 
-											<!-- Hotel Gallery Slider Item -->
+                                    while ($data = mysqli_fetch_array($query_mysql)) {
+                                        $gambar = $data['gambar']; ?>
 
-											<!-- First Slide -->
-											<?php
-											$query_mysql = mysqli_query($koneksi, "SELECT dag.gambar FROM destinasi_area_gambar AS dag INNER JOIN destinasi_area AS da ON dag.destinasi_area_id = da.id_area WHERE da.nama_area = '$namaWisata' ") or die(mysqli_error());
-											$num_rows = mysqli_num_rows($query_mysql);
-											$counter = 0;
-											while ($data = mysqli_fetch_array($query_mysql)) {
-												$gambar = $data['gambar'];
-											?>
-												<!--
-                                        <div class="item <?php if ($i == 0) echo "active" ?>">
-                                            <!-- Slide Background 
-                                            <img src="<?= $gambar ?>" alt="in_th_030_01" />
-                                        </div> -->
-
-												<div class="owl-item">
-													<a class="colorbox cboxElement" href="<?= $gambar ?>">
-														<img src="<?= $gambar ?>" alt="in_th_030_01">
-													</a>
-												</div>
-
-
-												<!-- End of Slide -->
-											<?php
-											} ?>
-
-
-											<!-- Hotel Gallery Slider Item 
-										<div class="owl-item">
-											<a class="colorbox cboxElement" href="images/listing_5.jpg">
-												<img src="images/listing_thumb_5.jpg" alt="https://unsplash.com/@workweek">
+											<a class="colorbox cboxElement" href="<?= $gambar ?>">
+												<img src="<?= $gambar ?>" alt="in_th_030_01" height="200px">
 											</a>
-										</div>
+                                    <?php 
+                                    } 
+                                ?>
 
-										
-										<div class="owl-item">
-											<a class="colorbox cboxElement" href="images/listing_6.jpg">
-												<img src="images/listing_thumb_6.jpg" alt="https://unsplash.com/@avidenov">
-											</a>
-										</div>
-
-										
-										<div class="owl-item">
-											<a class="colorbox cboxElement" href="images/listing_7.jpg">
-												<img src="images/listing_thumb_7.jpg" alt="https://unsplash.com/@pietruszka">
-											</a>
-										</div>
-
-										
-										<div class="owl-item">
-											<a class="colorbox cboxElement" href="images/listing_8.jpg">
-												<img src="images/listing_thumb_8.jpg" alt="https://unsplash.com/@rktkn">
-											</a>
-										</div>
-
-										
-										<div class="owl-item">
-											<a class="colorbox cboxElement" href="images/listing_9.jpg">
-												<img src="images/listing_thumb_9.jpg" alt="https://unsplash.com/@mindaugas">
-											</a>
-										</div>-->
-										</div>
+								</div>
 
 										<!-- Hotel Slider Nav - Prev -->
 										<div class="hotel_slider_nav hotel_slider_prev">
@@ -357,7 +309,6 @@ $logoTentang = $tentang['logo'];
 										17.046,15.554 " />
 											</svg>
 										</div>
-
 									</div>
 								</div>
 
@@ -549,6 +500,14 @@ $logoTentang = $tentang['logo'];
 	<script src="plugins/OwlCarousel2-2.2.1/owl.carousel.js"></script>
 	<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyCIwF204lFZg1y4kPSIhKaHEXMLYxxuMhA"></script>
 	<script src="js/single_listing_custom.js"></script>
+	<script>
+		var owl = $('.owl-carousel');
+        owl.owlCarousel({
+            items:4,
+            loop:false,
+            autoplay:false,
+        });
+	</script>
 
 </body>
 
